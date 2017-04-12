@@ -1,0 +1,14 @@
+{% include 'header.twig' %}
+    <section class="row" id="content">
+        <div class="column">
+            {{ content }}
+        </div>
+    </section>
+
+    {% if current_page.meta.playbook %}
+        {% include 'playbook.twig' %}
+    {% elseif current_page.meta.chapter %}
+        {% include 'chapter.twig' %}
+    {% endif %}
+    
+{% include 'footer.twig' %}

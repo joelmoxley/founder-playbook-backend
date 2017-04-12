@@ -1,0 +1,12 @@
+    <footer class="row" id="footer">
+        <div class="column">
+            <div class="social">
+                {% for social in meta.social %}
+                    <a href="{{ social.url }}" title="{{ social.title }}"><span class="icon-{{ social.icon }}"></span></a>
+                {% endfor %}
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

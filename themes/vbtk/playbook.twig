@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="column toc">
+		<h1>Table of Contents</h1>
+
+		<ul class="chapters">
+            {% for page in pages|sort_by(['meta', 'chapter'])
+            	if page.meta.chapter
+            	and current_page.id|replace({'/index': ''}) in page.id %}
+                <li>
+                	<a href="{{ page.url|replace({'/index': ''}) }}">
+                    	{{ page.title }}
+                    </a>
+                </li>
+            {% endfor %}
+		</ul>
+	</div>
+</div>
