@@ -19,6 +19,5 @@
     </IfModule>
 </IfModule>
 
-
 # Prevent file browsing
 Options -Indexes -MultiViews

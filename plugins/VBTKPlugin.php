@@ -86,12 +86,17 @@ final class VBTKPlugin extends AbstractPicoPlugin
         $silentRedirectMarkdown = false;
 
         $uri = strtolower(urldecode(strtok($_SERVER['REQUEST_URI'], '?')));
+        $ext = pathinfo($uri)['extension'];
         $contentDir = listDir('./content/');
         $minDist = null;
         $minDistFile = null;
         $distance = null;
 
         foreach ($contentDir as $f) {
+            if (strlen($ext) > 0 && $ext !== pathinfo($f)['extension']) {
+                continue;
+            }
+
             $fRel = '/' . preg_replace('/^.?\/.+?\/content\//', '', $f);
             $distance = levenshtein(strtolower($fRel), $uri) / 
                 max(strlen($uri), strlen($f));
