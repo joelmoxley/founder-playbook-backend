@@ -6,7 +6,13 @@
     <ul class="search-results">
     {% for result in results %}
       <li>
-      <a href="{{ result.link }}">
+      {% if result.link starts with 'http' %}
+        {% set link = result.link %}
+      {% else %}
+        {% set link = '/' ~ result.page.id|split('/')|slice(0, 2)|join('/') ~ '/' ~ result.link %}
+      {% endif %}
+
+      <a href="{{ link }}">
         {{ result.text }}
         <div>
           {{ result.page.id|replace({
