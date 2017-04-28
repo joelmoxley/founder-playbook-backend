@@ -117,7 +117,31 @@ final class VBTKPlugin extends AbstractPicoPlugin
      */
     public function on404ContentLoading(&$file)
     {
-        // your code
+        $file = strtolower(urldecode($_SERVER['REQUEST_URI']));
+        $contentDir = listDir('./content/');
+        $minDist = null;
+        $minDistFile = null;
+        $distance = null;
+
+        foreach ($contentDir as $f) {
+            $distance = levenshtein(strtolower($f), $file) / 
+                max(strlen($file), strlen($f));
+
+            if (is_null($minDist) || $distance < $minDist) {
+                $minDist = $distance;
+                $minDistFile = $f;
+            }
+        }
+
+        if ($minDist > 0.5) {
+            return;
+        }
+
+        $minDistFile = preg_replace('/(index)?\.md$/', '', $minDistFile);
+        $minDistFile = '/' . preg_replace('/^.?\/.+?\/content\//', '', $minDistFile);
+
+        header('Location: ' . $minDistFile);
+        exit;
     }
 
     /**
@@ -341,4 +365,20 @@ final class VBTKPlugin extends AbstractPicoPlugin
     {
         // your code
     }
+}
+
+function listDir($dir, &$results = array()){
+    $files = scandir($dir);
+
+    foreach($files as $key => $value){
+        $path = realpath($dir.DIRECTORY_SEPARATOR.$value);
+        if(!is_dir($path)) {
+            $results[] = $path;
+        } else if(substr($value, 0, 1) != '.') {
+            listDir($path, $results);
+            $results[] = $path;
+        }
+    }
+
+    return $results;
 }

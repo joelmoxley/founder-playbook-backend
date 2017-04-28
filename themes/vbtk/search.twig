@@ -9,7 +9,7 @@
       {% if result.link starts with 'http' %}
         {% set link = result.link %}
       {% else %}
-        {% set link = '/' ~ result.page.id|split('/')|first ~ '/' ~ result.link %}
+        {% set link = '/' ~ result.page.id|split('/')|slice(0, length - 1)|join('/') ~ '/' ~ result.link %}
       {% endif %}
 
       <a href="{{ link }}">
