@@ -4,9 +4,11 @@
 <div class="column play-row">
   <h1>{{ current_page.title }}</h1>
 
-  <div class="columns"> 
+  {% if content is not empty %}
+  <div class="columns play-intro play-content">
     {{ content }}
   </div>
+  {% endif %}
 
   <div>
   {% set index = 0 %}

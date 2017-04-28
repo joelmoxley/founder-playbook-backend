@@ -61,18 +61,22 @@
             {% endfor %}
         </ul>
         {% endif %}
+
         <section class="row" id="content">
             {% block content %}{% endblock %}
         </section>
-            <div id="footer" class="row">
-                {{ "footer"|content|markdown }}
 
-                <div class="social">
-                    {% for social in meta.social %}
-                        <a href="{{ social.url }}" title="{{ social.title }}"><span class="icon-{{ social.icon }}"></span></a>
-                    {% endfor %}
-                </div>
+        {% spaceless %}
+        <div id="footer" class="row">
+            {{ "footer"|content|markdown }}
+
+            <div class="social">
+                {% for social in meta.social %}
+                    <a href="{{ social.url }}" title="{{ social.title }}"><span class="icon-{{ social.icon }}"></span></a>
+                {% endfor %}
             </div>
+        </div>
+        {% endspaceless %}
     </div>
 </body>
 </html>
