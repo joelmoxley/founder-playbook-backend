@@ -83,7 +83,9 @@ final class VBTKPlugin extends AbstractPicoPlugin
             return;
         }
 
-        $uri = strtolower(urldecode($_SERVER['REQUEST_URI']));
+        $silentRedirectMarkdown = false;
+        
+        $uri = strtolower(urldecode(strtok($_SERVER['REQUEST_URI'], '?')));
         $contentDir = listDir('./content/');
         $minDist = null;
         $minDistFile = null;
@@ -103,13 +105,15 @@ final class VBTKPlugin extends AbstractPicoPlugin
             return;
         }
 
-        if (is_dir($minDistFile)) {
-            $minDistFile .= '/index.md';
-        }
+        if ($silentRedirectMarkdown) {
+            if (is_dir($minDistFile)) {
+                $minDistFile .= '/index.md';
+            }
 
-        if (strpos($minDistFile, '.md') !== false) {
-            $file = $minDistFile;
-            return;
+            if (strpos($minDistFile, '.md') !== false) {
+                $file = $minDistFile;
+                return;
+            }
         }
 
         $minDistFile = '/' . preg_replace('/^.?\/.+?\/content\//', '', $minDistFile);
