@@ -3,9 +3,9 @@ Title: 'Telling a Story'
 Section: 1-1
 ---
 
- 1. [Garage Ventures - Perfecting Your Pitch](files/Garage-Ventures-Perfecting-Your-Pitch.pdf)
+ 1. [Garage Ventures - Perfecting Your Pitch](/files/Garage-Ventures-Perfecting-Your-Pitch.pdf)
     15 MIN READ
- 2. [David Merkoski - Telling Your Story](files/David-Merkoski-Telling-Your-Story.pdf)
+ 2. [David Merkoski - Telling Your Story](/files/David-Merkoski-Telling-Your-Story.pdf)
  3. [Nancy Duarte - Greatest Communicators](https://www.youtube.com/watch?v=1nYFpuc2Umk)
     15 MIN VIDEO
  4. [Andy Raskin - Improving Your Pitch](https://medium.com/firm-narrative/want-a-better-pitch-watch-this-328b95c2fd0b#.jkv1k4520)
