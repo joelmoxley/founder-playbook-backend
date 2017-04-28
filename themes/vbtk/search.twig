@@ -1,0 +1,22 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+  <div class="column">
+    <h1>{{results|length}} results for "{{query}}"</h1>
+    <ul class="search-results">
+    {% for result in results %}
+      <li>
+      <a href="{{ result.link }}">
+        {{ result.text }}
+        <div>
+          {{ result.page.id|replace({
+            '-': ' ',
+            '/': ' / '
+          })|title }}
+        </div>
+      </a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

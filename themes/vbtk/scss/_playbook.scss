@@ -1,0 +1,76 @@
+.playbook {
+
+
+}
+
+  .plays, .search-results {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    a {
+      color: $light-blue;
+      display: block;
+      font-size: 1.25em;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid $whitest;
+      position: relative;
+
+      &:active, &:hover {
+        color: $white;
+        background-color: $light-blue;
+      }
+      
+      &::after {
+        content: '\f0da';
+        font-family: FontAwesome;
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 1em;
+        line-height: 1;
+        margin-top: -0.5em;
+      }
+
+      > div {
+        font-size: 1rem;
+        color: $font-light;
+      }
+    }
+  }
+
+.playbook-nav {
+  position: absolute;
+  right: -3.25em;
+
+  a {
+    color: $light-blue;
+    font-weight: bold;
+    padding: 0.85em;
+    display: block;
+  }
+
+  li {
+    background-color: rgba(white, 0.25);
+    display: block;
+    text-align: center;
+    border-radius: $global-radius;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    margin-bottom: 1px;
+    transition: background-color 0.5s;
+
+    &:not(.selected):hover {
+      background-color: rgba(white, 0.45);
+    }
+  }
+
+  .selected {
+    background-color: $white;
+
+    a {
+      color: $dark-blue;
+      font-weight: 600;
+    }
+  }
+}

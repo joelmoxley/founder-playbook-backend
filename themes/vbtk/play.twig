@@ -1,0 +1,35 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+<div class="column play-row">
+  <h1>{{ current_page.title }}</h1>
+
+  <div class="columns"> 
+    {{ content }}
+  </div>
+
+  <div>
+  {% set index = 0 %}
+  {% for page in pages|sort_by(['meta', 'section'])|sort_by(['meta', 'column'])
+  	if page.meta.section
+  	and current_page.id|replace({'/index': ''}) in page.id %}
+      <div class="play-content columns
+        {% if page.meta.section ends with '-1' %}
+          large-7
+        {% elseif page.meta.section ends with '-2' %}
+          large-5
+        {% endif %}
+        ">
+        {% set index = index + 1 %}
+        <h2>{{ page.title }}</h2>
+
+
+        {{ page.id|content }}
+      </div>
+      {% if page.meta.section ends with '-2' %}
+      </div><div>
+      {% endif %}
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}

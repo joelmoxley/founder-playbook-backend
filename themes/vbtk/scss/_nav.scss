@@ -1,0 +1,166 @@
+nav {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: $dark-blue;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    a {
+      display: inline-block;
+      padding: 0.25em 1.25em;
+      text-transform: uppercase;
+    }
+
+    li {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      width: 100%;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    .selected {
+      background-color: $white;
+    }
+  }
+}
+
+@include breakpoint (medium up) {
+  nav {
+    ul {
+      a {
+        width: 100%;
+      }
+
+      li {
+        width: 250px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@include breakpoint (950px) {
+  nav {
+    ul {
+      li {
+        width: auto;
+      }
+    }
+  }
+}
+// nav {
+//   position: relative;
+
+//   h1 {
+//     margin: 0;
+//     padding: 0;
+//     height: 2.5em;
+//   }
+
+//   label[for="search"], ul {
+//     color: $dark-blue;
+//     margin: 0;
+//     border: 0;
+//     font-size: inherit;
+//     text-transform: uppercase; 
+//     display: inline-block;
+//     width: auto;
+//     position: absolute;
+//     top: 0;
+//     z-index: 1;
+//     overflow: visible;
+//   }
+
+//   ul {
+//     list-style-type: none;
+//     border-radius: $global-radius;
+//     border-bottom-left-radius: 0;
+//     border-bottom-right-radius: 0;
+//     background-color: $lighter-blue;
+//     padding-top: 1em;
+
+//     &::before {
+//       content: 'Current Playbook';
+//       font-size: 0.5em;
+//       display: block;
+//       top: 0.5em;
+//       left: 2em;
+//       color: $dark-blue;
+//       position: absolute;
+//       text-transform: uppercase;
+//       z-index: 3;
+//     }
+
+//     &::after {
+//       content: '\f0d7';
+//       font-family: FontAwesome;
+//       position: absolute;
+//       top: 0.85em;
+//       right: 0.75em;
+//       z-index: 3;
+//     }
+
+//     a {
+//       color: inherit;
+//       display: block;
+//       padding: 0.25em 2em 0.25em 1em;
+//     }
+
+//     li {
+//       display: none;
+//       position: relative;
+//       cursor: pointer;
+//       line-height: 1;
+
+//       &:first-child {
+//         padding: 0.25em 2em 0.25em 1em;
+//       }
+//       &:last-child {
+//         border-bottom-left-radius: $global-radius;
+//         border-bottom-right-radius: $global-radius;
+//       }
+//     }
+
+//     .selected {
+//       display: block;
+//     }
+
+//     &:hover {
+//       color: #AAA;
+//       background-color: #EEE;
+//       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+//       border-bottom-left-radius: $global-radius;
+//       border-bottom-right-radius: $global-radius;
+
+//       li {
+//         display: block;
+//         background-color: $white;
+//         font-weight: 400;
+
+//         &:hover {
+//           background-color: $light-blue;
+//           color: $white;
+//         }
+
+//         &:first-child {
+//           color: #333;
+//           background-color: #EEE;
+//           font-weight: 500;
+//         }
+//       }
+//     }
+//   }
+
+
+//   label[for="search"] {
+//     right: 1.5em;
+//     color: $white;
+//     padding-top: 0.5em;
+//     font-size: 1.5em;
+//   }
+// }

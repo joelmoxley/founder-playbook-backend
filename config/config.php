@@ -19,7 +19,7 @@
 /*
  * BASIC
  */
-$config['site_title'] = 'Founder Playbook';     // Site title
+$config['site_title'] = 'Playbooks';     // Site title
 // $config['base_url'] = '';                    // Override base URL (e.g. http://example.com)
 $config['rewrite_url'] = true;                  // A boolean indicating forced URL rewriting
 
@@ -27,11 +27,11 @@ $config['rewrite_url'] = true;                  // A boolean indicating forced U
  * THEME
  */
 $config['theme'] = 'vbtk';                      // Set the theme (defaults to "default")
-// $config['twig_config'] = array(              // Twig settings
-//     'cache' => false,                        // To enable Twig caching change this to a path to a writable directory
-//     'autoescape' => false,                   // Auto-escape Twig vars
-//     'debug' => false                         // Enable Twig debug
-// );
+$config['twig_config'] = array(              // Twig settings
+    'cache' => false,                        // To enable Twig caching change this to a path to a writable directory
+    'autoescape' => false,                   // Auto-escape Twig vars
+    'debug' => true                         // Enable Twig debug
+);
 
 /*
  * CONTENT

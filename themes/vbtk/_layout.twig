@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+
+    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
+    {% if meta.description %}
+        <meta name="description" content="{{ meta.description|striptags }}">
+    {% endif %}{% if meta.robots %}
+        <meta name="robots" content="{{ meta.robots }}">
+    {% endif %}
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type="text/css" />
+    <link rel="stylesheet" href="{{ theme_url }}/build/css/style.css" type="text/css" />
+
+    <script src="{{ theme_url }}/build/js/scripts.js"></script>
+</head>
+<body>
+
+    <header id="header">
+        {% spaceless %}
+        <div class="row column">
+            <h1><a href="{{ "index"|link }}" id="logo">{{ site_title }}</a></h1>
+
+            <form action="/">
+                <input type="text" name="query" value="{{ query }}" />
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <nav class="row">
+            <ul name="playbook">
+                {% for page in pages|sort_by(['meta', 'playbook']) if page.title and page.meta.playbook %}
+                    <li {% if page.id|replace({'/index': ''}) in current_page.id %} class="selected"{% endif %}>
+                        <a href="/{{ page.id|replace({'index': ''}) }}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endspaceless %}
+    </header>
+
+    <div id="container">
+        {% set current_playbook = current_page.id|split('/')|first|replace({'index': ''}) %}
+        {% if current_playbook is not empty %}
+        <ul class="playbook-nav">
+            <li {% if current_page.id|replace({'/index': ''}) == current_playbook %} class="selected"{% endif %}>
+                <a title="{{ page.title }}" href="/{{ current_playbook }}">
+                    TOC
+                </a>
+            </li>
+            {% for page in pages|sort_by(['meta', 'play']) if page.meta.play and page.id starts with current_playbook %}
+                <li {% if page.id|replace({'/index': ''}) in current_page.id %} class="selected"{% endif %}>
+                    <a title="{{ page.title }}" href="/{{ page.id|replace({'index': ''}) }}">
+                        {{ page.meta.play }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <section class="row" id="content">
+            {% block content %}{% endblock %}
+        </section>
+            <div id="footer" class="row">
+                {{ "footer"|content|markdown }}
+
+                <div class="social">
+                    {% for social in meta.social %}
+                        <a href="{{ social.url }}" title="{{ social.title }}"><span class="icon-{{ social.icon }}"></span></a>
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+</body>
+</html>

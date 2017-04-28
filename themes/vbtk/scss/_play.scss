@@ -1,0 +1,56 @@
+.play-row {
+  h1 {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid $whitest;
+  }
+
+  h2, h3, h4 {
+    color: $font-light;
+  }
+
+  .play-content {
+    color: $font-light;
+
+    ol {
+      margin: 0;
+      padding: 0;
+      counter-reset: item;
+      margin-bottom: 2em;
+
+      a {
+        display: block;
+        color: $light-blue;
+        font-size: 1.2em;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &:before {
+          content: counter(item) " - ";
+          counter-increment: item;
+          color: $light-blue;
+        }
+      }
+
+      li {
+        display: block;
+        position: relative;
+        padding: 1em 2em;
+        border-bottom: 1px solid $whitest;
+
+        &:before {
+          content: '\f15b';
+          font-family: FontAwesome;
+          display: block;
+          position: absolute;
+          left: 0;
+          height: 100%;
+          background-color: #FFF;
+          padding-right: 1em;
+          color: $light-blue;
+        }
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@ var fonts = [
 
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
+    sassImporter  = require('sass-module-importer'),
     browserify = require('gulp-browserify'),
     browserSync = require('browser-sync'),
     cssnano = require('gulp-cssnano'),
@@ -20,14 +21,17 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     babel = require('gulp-babel'),
     rename = require('gulp-rename'),
-    concat = require('gulp-concat');
+    concat = require('gulp-concat'),
+    googleWebFonts = require('gulp-google-webfonts');
 
  
 // COMPILE THEME SASS FILE
 gulp.task('sass', function () {
   return gulp.src('./scss/style.scss')
     .pipe(sourcemaps.init()) // Start Sourcemaps
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      importer: sassImporter()
+    }).on('error', sass.logError))
     .pipe(autoprefixer({
         browsers: ['last 2 versions'],
         cascade: false
@@ -40,9 +44,19 @@ gulp.task('sass', function () {
 
 
 // COPY ALL FONTS INTO FONT BUILD DIRECTORY
-gulp.task('fonts', function () {
-  return gulp.src(fonts)
-    .pipe(gulp.dest('./build/fonts/'));
+gulp.task('fonts', function (done) {
+  gulp.src('fonts.txt')
+    .pipe(googleWebFonts())
+    .pipe(gulp.dest('./build/fonts/'))
+    .on('end', function () {
+      gulp.src('node_modules/**/*.{eot,woff,woff2,ttf}', { nodir: true })
+        .pipe(rename(function (path) {
+          path.dirname = path.dirname.replace(/^(.+?\/fonts?|[^\/]+)(\/|$)/, '');
+          return path;
+        }))
+        .pipe(gulp.dest('./build/fonts/'))
+        .on('end', done)
+    })
 });
 
 

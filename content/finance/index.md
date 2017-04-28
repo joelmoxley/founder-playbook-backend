@@ -1,5 +1,5 @@
 ---
-Title: II - Finance
+Title: Finance
 Playbook: 2
 Description: ...
 ---

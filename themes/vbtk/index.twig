@@ -1,14 +1,7 @@
-{% include 'header.twig' %}
-    <section class="row" id="content">
-        <div class="column">
-            {{ content }}
-        </div>
-    </section>
+{% extends "_layout.twig" %}
 
-    {% if current_page.meta.playbook %}
-        {% include 'playbook.twig' %}
-    {% elseif current_page.meta.chapter %}
-        {% include 'chapter.twig' %}
-    {% endif %}
-    
-{% include 'footer.twig' %}
+{% block content %}
+  <div class="column">
+    {{ content }}
+  </div>
+{% endblock %}

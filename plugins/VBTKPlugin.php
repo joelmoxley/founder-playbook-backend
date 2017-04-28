@@ -11,7 +11,7 @@
  * @license http://opensource.org/licenses/MIT The MIT License
  * @version 1.0
  */
-final class DummyPlugin extends AbstractPicoPlugin
+final class VBTKPlugin extends AbstractPicoPlugin
 {
     /**
      * This plugin is enabled by default?
@@ -19,7 +19,7 @@ final class DummyPlugin extends AbstractPicoPlugin
      * @see AbstractPicoPlugin::$enabled
      * @var boolean
      */
-    protected $enabled = false;
+    protected $enabled = true;
 
     /**
      * This plugin depends on ...
@@ -298,7 +298,37 @@ final class DummyPlugin extends AbstractPicoPlugin
      */
     public function onPageRendering(Twig_Environment &$twig, array &$twigVariables, &$templateName)
     {
-        // your code
+        $query = $_GET['query'];
+        $regex = '/\n\s*(?<number>[0-9]+)\.\s*\[(?<text>[^\]]+)\]\((?<link>[^\)]+)\)/i';
+
+        $twig->addExtension(new Twig_Extension_Debug());
+
+        if ($twigVariables['current_page']['meta']['playbook']) {
+          $templateName = 'playbook.twig';
+        } else if ($twigVariables['current_page']['meta']['play'] ||
+                   $twigVariables['current_page']['meta']['chapter']) {
+          $templateName = 'play.twig';
+        } else if ($templateName == 'index.twig' && $query) {
+          $templateName = 'search.twig';
+
+          $twigVariables['query'] = htmlentities($query);
+          $twigVariables['results'] = [];
+
+          foreach ($twigVariables['pages'] as $id => $page) {
+            if (!$page['meta']['play'] && !$page['meta']['section']) {
+              continue;
+            }
+
+            preg_match_all($regex, $page['raw_content'], $matches, PREG_SET_ORDER);
+            
+            foreach ($matches as $index => $match) {
+              if (stripos($match['text'], $query) !== false) {
+                $match['page'] = $page;
+                array_push($twigVariables['results'], $match);
+              }
+            }
+          }
+        }
     }
 
     /**

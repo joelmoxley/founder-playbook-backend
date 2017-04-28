@@ -14,17 +14,192 @@ CSS file.
 
 // Import local Foundation overrides - Don't link to Bower version as it will be overwritten whenever updated
 @import "settings";
+@import "fonts";
+@import "../fonts/fonts.css";
 
-// Import foundation.scss from vendor files
-@import "../node_modules/foundation-sites/scss/foundation";
+
+@import "normalize.css";
+
+@import "foundation-sites/scss/foundation.scss";
 @include foundation-everything;
 
-@import "../build/fonts/fontello/css/fontello.css";
+@import "font-awesome/scss/font-awesome.scss";
 
-@import "fonts";
+$white: #FFF;
+$whitest: #E2E0DE;
+$whiter: #CCC;
+$light-blue: #5AC3F5;
+$lighter-blue: #9BDAF9;
+$dark-blue: #3B444B;
+$font-light: #6B6560;
 
-// FONTS
-@import "//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700";
+@import "nav.scss";
+@import "playbook.scss";
+@import "play.scss";
 
-@import "main";
+body {
+  background-color: $dark-blue;
+}
 
+#header {
+  color: $white;
+  background-color: $light-blue;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+
+  h1 {
+    color: inherit;
+    text-transform: uppercase;
+    margin: 0;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  form {
+    color: $dark-blue;
+    display: block;
+    white-space: nowrap;
+    height: 2rem;
+    padding-right: 2em;
+    text-align: center;
+    margin-bottom: 1rem;
+
+    input {
+      color: inherit;
+      border-radius: $global-radius;
+      border-bottom-right-radius: 0px;
+      border-top-right-radius: 0px;
+      background-color: $lighter-blue;
+      display: inline-block;
+      margin: 0;
+      padding: 0 1em;
+      border: none;
+      height: 100%;
+      vertical-align: top;
+      max-width: 350px;
+    }
+
+    button {
+      color: inherit;
+      margin: 0;
+      padding: 1em 0.5em;
+      line-height: 0;
+      display: inline-block;
+      background-color: $white;
+      border-radius: $global-radius;
+      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0px;
+      vertical-align: top;
+      line-height: 0;
+      height: 100%;
+
+      i {
+        line-height: 0;
+      }
+    }
+  }
+}
+
+
+$notebook-ring-color: #CCC;
+#container {
+  margin: 2em 4em 2em 1em;
+  padding: 2em;
+  background-color: #FFF;
+  position: relative;
+  border-radius: $global-radius;
+  overflow: visible;
+  max-width: $global-width;
+  border: 1px solid #000;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+  &::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    background-image: inline-svg('
+      <svg width="30" height="30" viewBox="0 0 30 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect id="r" fill="' + $notebook-ring-color + '" transform="rotate(-20)" x="0" y="0" width="30" height="7" rx="3.5"></rect>
+      </svg>');
+    background-repeat: repeat-y;
+    background-position: center top;
+    top: 5%;
+    height: 90%;
+    left: -13px;
+    width: 30px;
+  }
+
+  h1 {
+    color: $dark-blue;
+    text-transform: uppercase;
+  }
+}
+
+#content {
+  overflow: auto;
+
+  h1:first-of-type {
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border-bottom: 1px solid $whitest;
+  }
+}
+
+#footer {
+  color: $font-light;
+  padding: 3em 2em 1em 2em;
+  margin-top: 2em;
+  background-color: #EEE;
+  overflow: auto;
+
+  h1, h2, h3, h4 {
+    color: inherit;
+    font-size: 1.5em;
+  }
+
+  ul {
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+      text-align: center;
+      height: 150px;
+      width: 150px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      background-color: #FFF;
+    }
+  }
+}
+
+@include breakpoint(380px) {
+  #header {
+    form {
+      float: right;
+    }
+  }
+}
+
+@include breakpoint (medium up) {
+  nav {
+    label[for="playbook"] {
+      left: 3.5em;
+    }
+  }
+}
+
+@include breakpoint ($global-width + 100px) {
+  #container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
