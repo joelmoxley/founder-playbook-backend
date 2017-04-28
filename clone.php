@@ -1,4 +1,8 @@
 <?php
+if (file_exists('content') && !file_exists('content/.git')) {
+  exec('rm -rf content');
+}
+
 if (file_exists('content')) {
   exec('cd content && git pull > /dev/null 2>/dev/null &');
 } else {
