@@ -54,6 +54,36 @@
           padding-right: 1em;
           color: $light-blue;
         }
+
+        &.pdf:before {
+          content: '\f1c1';
+        }
+
+        &.youtube:before {
+          // content: '\f1c8'; // video icon
+          content: '\f167'; // youtube logo
+        }
+
+        &.doc:before {
+          content: '\f1c2';
+        }
+
+        &.ppt:before {
+          content: '\f1c4';
+        }
+
+        &.rtf:before, &.txt:before {
+          content: '\f15c';
+        }
+
+        &.xls:before {
+          content: '\f1c3';
+        }
+
+        &.external:before {
+          content: '\f08e';
+          // content: '\f14c';
+        }
       }
     }
   }

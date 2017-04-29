@@ -85,7 +85,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
 
         $silentRedirectMarkdown = false;
 
-        $uri = strtolower(urldecode(strtok($_SERVER['REQUEST_URI'], '?')));
+        $uri = slugify(urldecode(strtok($_SERVER['REQUEST_URI'], '?')));
         $ext = pathinfo($uri)['extension'];
         $contentDir = listDir('./content/');
         $minDist = null;
@@ -98,7 +98,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
             }
 
             $fRel = '/' . preg_replace('/^.?\/.+?\/content\//', '', $f);
-            $distance = levenshtein(strtolower($fRel), $uri) / 
+            $distance = levenshtein(slugify($fRel), $uri) / 
                 max(strlen($uri), strlen($f));
 
             if (is_null($minDist) || $distance < $minDist) {
@@ -386,6 +386,10 @@ final class VBTKPlugin extends AbstractPicoPlugin
     {
         // your code
     }
+}
+
+function slugify($string) {
+    return preg_replace('/[^a-z0-9\.\/]+/', '-', strtolower($string));
 }
 
 function listDir($dir, &$results = array()){
