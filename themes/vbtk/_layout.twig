@@ -29,10 +29,11 @@
             </form>
         </div>
 
+        {% set current_playbook = current_page.id|split('/')|first|replace({'index': ''}) %}
         <nav class="row">
             <ul name="playbook">
                 {% for page in pages|sort_by(['meta', 'playbook']) if page.title and page.meta.playbook %}
-                    <li {% if page.id|replace({'/index': ''}) in current_page.id %} class="selected"{% endif %}>
+                    <li {% if page.id|split('/')|first|replace({'index': ''}) == current_playbook %} class="selected"{% endif %}>
                         <a href="/{{ page.id|replace({'index': ''}) }}">
                             {{ page.title }}
                         </a>
@@ -44,7 +45,6 @@
     </header>
 
     <div id="container">
-        {% set current_playbook = current_page.id|split('/')|first|replace({'index': ''}) %}
         {% if current_playbook is not empty %}
         <ul class="playbook-nav">
             <li {% if current_page.id|replace({'/index': ''}) == current_playbook %} class="selected"{% endif %}>
