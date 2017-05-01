@@ -41,12 +41,13 @@
 
 .playbook-nav {
   position: absolute;
-  right: -3.25em;
+  right: -3em;
+  top: 2.5em;
 
   a {
     color: $light-blue;
     font-weight: bold;
-    padding: 0.85em;
+    padding: 0.73em;
     display: block;
   }
 

@@ -7,7 +7,7 @@
 	<ul class="plays">
         {% for page in pages|sort_by(['meta', 'play'])
         	if page.meta.play
-        	and current_page.id|replace({'/index': ''}) in page.id %}
+        	and page.id starts with current_playbook %}
             <li>
             	<a href="{{ page.url|replace({'/index': ''}) }}">
                 	{{ page.meta.play }}. {{ page.title }}
