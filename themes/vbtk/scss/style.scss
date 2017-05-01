@@ -161,7 +161,7 @@ $notebook-ring-color: #CCC;
 
 #footer {
   color: $font-light;
-  padding: 3rem 2rem 1rem 2rem;
+  padding: 2rem 1rem 1rem;
   margin-top: 2em;
   background-color: #F2F2F2;
   overflow: auto;
@@ -273,6 +273,8 @@ $notebook-ring-color: #CCC;
   }
 
   #footer {
+    padding: 3rem 2rem 1rem 2rem;
+
     h1, h2 {
       font-size: 1.25em;
     }
