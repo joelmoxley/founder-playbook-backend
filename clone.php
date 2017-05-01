@@ -1,7 +1,7 @@
 <?php
 $gitURL = 'https://github.com/joelmoxley/founder-playbook.git';
 
-if (file_exists('content')) {
+if (file_exists('content') && !file_exists('content/.git')) {
   exec('rm -rf content');
 }
 
