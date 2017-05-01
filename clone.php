@@ -1,6 +1,5 @@
 <?php
-// $gitURL = 'https://rchipka@bitbucket.org/vibethink-dev/founders-playbook-content.git';
-$gitURL = 'https://bitbucket.org/vibethink-dev/fp-content-test';
+$gitURL = 'https://rchipka@bitbucket.org/vibethink-dev/founders-playbook-content.git';
 
 if (file_exists('content') && !file_exists('content/.git')) {
   exec('rm -rf content');
