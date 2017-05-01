@@ -29,7 +29,7 @@
         margin-bottom: 0.25em;
       }
 
-      li > a, p:first-of-type > a {
+      li > a, p:first-of-type > a:first-child {
         display: block;
         font-size: 1.2em;
 
