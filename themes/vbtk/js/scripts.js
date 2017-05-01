@@ -31,7 +31,7 @@ $(document).ready(function () {
   $(container).on('click', 'a', function (e) {
     var href = $(this).attr('href');
 
-    if (/^https?:/.test(href)) {
+    if (/^https?:/.test(href) || href.indexOf('.') !== -1) {
       return;
     }
 
