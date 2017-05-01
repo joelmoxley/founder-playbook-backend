@@ -53,6 +53,7 @@ body {
     margin: 0;
     display: inline-block;
     margin-bottom: 1rem;
+    font-size: 2.75em;
   }
 
   a {
@@ -71,6 +72,7 @@ body {
     padding-right: 2em;
     text-align: center;
     margin-bottom: 1rem;
+    margin-top: 0.75em;
 
     input {
       color: inherit;
@@ -111,7 +113,7 @@ body {
 
 $notebook-ring-color: #CCC;
 #container {
-  margin: 2em 4em 2em 1em;
+  margin: 2em 3em 2em 1em;
   padding: 2em;
   background-color: #FFF;
   position: relative;
@@ -161,6 +163,11 @@ $notebook-ring-color: #CCC;
   background-color: #F2F2F2;
   overflow: auto;
 
+  a {
+    color: $light-blue;
+    text-transform: none;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: inherit;
   }
@@ -180,10 +187,31 @@ $notebook-ring-color: #CCC;
     li {
       display: inline-block;
       text-align: center;
-      min-width: 150px;
+      width: 30%;
       vertical-align: middle;
       text-transform: uppercase;
+      padding: 0.5em;
       // background-color: #FFF;
+    }
+  }
+
+  .join-community {
+    position: relative;
+
+    i {
+      font-size: 2em;
+      color: #000;
+      position: absolute;
+    }
+
+    .fa-creative-commons {
+      top: 0;
+      right: 1.25em;
+    }
+
+    .fa-github {
+      top: 0;
+      right: 0;
     }
   }
 
@@ -196,6 +224,8 @@ $notebook-ring-color: #CCC;
   }
 
   .partners {
+    margin-bottom: 1em;
+
     h1, h2, h3 {
       text-align: center;
     }
@@ -204,6 +234,7 @@ $notebook-ring-color: #CCC;
       border-radius: $global-radius;
       display: inline-block;
       border: 5px solid $white;
+      text-align: center;
 
       li {
         display: inline-block;

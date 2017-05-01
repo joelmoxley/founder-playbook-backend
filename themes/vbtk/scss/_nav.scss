@@ -2,6 +2,7 @@ nav {
   font-size: 1.25em;
   font-weight: 600;
   color: $dark-blue;
+  background-color: #9CDBF9;
 
   ul {
     margin: 0;
@@ -10,7 +11,7 @@ nav {
 
     a {
       display: inline-block;
-      padding: 0.25em 1.25em;
+      padding: 0.5em 1.25em;
       text-transform: uppercase;
     }
 
