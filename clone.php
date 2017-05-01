@@ -1,7 +1,7 @@
 <?php
-$gitURL = 'https://rchipka@bitbucket.org/vibethink-dev/founders-playbook-content.git';
+$gitURL = 'https://github.com/joelmoxley/founder-playbook/tree/develop';
 
-if (file_exists('content') && !file_exists('content/.git')) {
+if (file_exists('content')) {
   exec('rm -rf content');
 }
 
