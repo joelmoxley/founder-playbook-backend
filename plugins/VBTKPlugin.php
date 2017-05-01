@@ -347,6 +347,8 @@ final class VBTKPlugin extends AbstractPicoPlugin
 
         $twig->addExtension(new Twig_Extension_Debug());
 
+        $twigVariables['ajax'] = isset($_GET['ajax']);
+
         if ($twigVariables['current_page']['meta']['playbook']) {
           $templateName = 'playbook.twig';
         } else if ($twigVariables['current_page']['meta']['play'] ||

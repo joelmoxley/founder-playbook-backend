@@ -1,3 +1,5 @@
+{% set current_playbook = current_page.id|split('/')|first|replace({'index': ''}) %}
+{% if not ajax %}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -29,7 +31,6 @@
             </form>
         </div>
 
-        {% set current_playbook = current_page.id|split('/')|first|replace({'index': ''}) %}
         <nav class="row">
             <ul name="playbook">
                 {% for page in pages|sort_by(['meta', 'playbook']) if page.title and page.meta.playbook %}
@@ -45,6 +46,7 @@
     </header>
 
     <div id="container">
+{% endif %}
         {% if current_playbook is not empty %}
         <ul class="playbook-nav">
             <li {% if current_page.id|replace({'/index': ''}) == current_playbook %} class="selected"{% endif %}>
@@ -77,6 +79,8 @@
             </div>
         </div>
         {% endspaceless %}
+{% if not ajax %}
     </div>
 </body>
 </html>
+{% endif %}
