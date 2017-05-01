@@ -15,15 +15,18 @@
   .play-content {
     color: $font-light;
 
+    a {
+      color: $light-blue;
+    }
+
     ol {
       margin: 0;
       padding: 0;
       counter-reset: item;
       margin-bottom: 2em;
 
-      a:first-child {
+      li > a, p:first-of-type > a {
         display: block;
-        color: $light-blue;
         font-size: 1.2em;
 
         &:hover {
