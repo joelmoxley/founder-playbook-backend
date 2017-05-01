@@ -23,9 +23,9 @@ nav {
       width: 100%;
       line-height: 1;
       vertical-align: middle;
-      
-      &:hover {
-        background-color: rgba($white, 0.25);
+
+      &:not(.selected):hover {
+        background-color: rgba($white, 0.45);
       }
     }
 
