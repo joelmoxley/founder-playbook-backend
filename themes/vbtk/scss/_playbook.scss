@@ -12,9 +12,13 @@
       color: $light-blue;
       display: block;
       font-size: 1.25em;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.5rem;
       border-bottom: 1px solid $whitest;
       position: relative;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 2em;
 
       &:active, &:hover {
         color: $white;
@@ -41,13 +45,13 @@
 
 .playbook-nav {
   position: absolute;
-  right: -3em;
-  top: 2.5em;
+  right: -2.5em;
+  top: 2em;
 
   a {
     color: $light-blue;
     font-weight: bold;
-    padding: 0.73em;
+    padding: 0.73em 0.5em;
     display: block;
   }
 
@@ -76,6 +80,17 @@
     a {
       color: $dark-blue;
       font-weight: 600;
+    }
+  }
+}
+
+@include breakpoint (medium up) {
+  .playbook-nav {
+    right: -3em;
+    top: 2.5em;
+
+    a {
+      padding: 0.73em;
     }
   }
 }
