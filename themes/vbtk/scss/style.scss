@@ -187,10 +187,34 @@ $notebook-ring-color: #CCC;
     }
   }
 
+  .community {
+    margin-bottom: 1.5em;
+
+    h1, h2 {
+      text-align: center;
+    }
+  }
+
   .partners {
     h1, h2, h3 {
       text-align: center;
     }
+
+    ul {
+      border-radius: $global-radius;
+      display: inline-block;
+      border: 5px solid $white;
+
+      li {
+        display: inline-block;
+        padding: 1em;
+        max-width: 50%;
+      }
+    }
+  }
+
+  .contributors {
+
   }
 }
 
