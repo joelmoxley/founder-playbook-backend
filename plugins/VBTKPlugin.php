@@ -98,16 +98,17 @@ final class VBTKPlugin extends AbstractPicoPlugin
             }
 
             $fRel = '/' . preg_replace('/^.?\/.+?\/content\//', '', $f);
+
             $distance = levenshtein(slugify($fRel), $uri) / 
                 max(strlen($uri), strlen($f));
 
             if (is_null($minDist) || $distance < $minDist) {
                 $minDist = $distance;
-                $minDistFile = $f;
+                $minDistFile = $fRel;
             }
         }
 
-        if ($minDist > 0.5) {
+        if (is_null($minDist) || $minDist > 0.5) {
             return;
         }
 
@@ -121,8 +122,6 @@ final class VBTKPlugin extends AbstractPicoPlugin
                 return;
             }
         }
-
-        $minDistFile = '/' . preg_replace('/^.?\/.+?\/content\//', '', $minDistFile);
 
         header('Location: ' . $minDistFile);
         exit;
