@@ -21,7 +21,7 @@
       counter-reset: item;
       margin-bottom: 2em;
 
-      a {
+      a:first-child {
         display: block;
         color: $light-blue;
         font-size: 1.2em;
