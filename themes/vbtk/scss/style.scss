@@ -144,7 +144,7 @@ $notebook-ring-color: #CCC;
 }
 
 #content {
-  overflow: auto;
+  // overflow: auto;
 
   h1:first-of-type {
     padding: 0.5rem 0.5rem;
@@ -192,7 +192,7 @@ $notebook-ring-color: #CCC;
       display: inline-block;
       text-align: center;
       width: 30%;
-      min-width: 120px;
+      min-width: 105px;
       vertical-align: middle;
       text-transform: uppercase;
       padding: 0.5em;
@@ -243,13 +243,48 @@ $notebook-ring-color: #CCC;
 
       li {
         display: inline-block;
-        padding: 1em;
-        max-width: 50%;
+        padding: 0.5em;
+        width: 50%;
+
+        @include breakpoint (medium) {
+          padding: 0.5em 1em;
+        }
+
+        @include breakpoint (large up) {
+          padding: 1em;
+        }
       }
     }
   }
 
   .contributors {
+    overflow: hidden;
+    position: relative;
+
+    ul {
+      max-height: 100px;
+      // position: absolute;
+      overflow: auto;
+
+      li {
+        width: 115px; 
+      }
+    }
+
+    // &:hover {
+    //   ul {
+    //     top: -1em;
+    //   }
+    // }
+
+    &:after {
+      font-family: FontAwesome;
+      content: '\f054';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      cursor: pointer;
+    }
   }
 }
 

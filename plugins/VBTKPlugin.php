@@ -343,7 +343,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
     public function onPageRendering(Twig_Environment &$twig, array &$twigVariables, &$templateName)
     {
         $query = $_GET['query'];
-        $regex = '/\n\s*(?<number>[0-9]+)\.\s*\[(?<text>[^\]]+)\]\((?<link>[^\)]+)\)/i';
+        $regex = '/\n\s*(?<number>[0-9]+)\.\s*\[(?<title>[^\]]+)\]\((?<link>[^\)]+)\)(?<content>((?!\n\s*[0-9]+\.).)+)?/si';
 
         $twig->addExtension(new Twig_Extension_Debug());
 
@@ -362,13 +362,26 @@ final class VBTKPlugin extends AbstractPicoPlugin
 
           foreach ($twigVariables['pages'] as $id => $page) {
             if (!$page['meta']['play'] && !$page['meta']['section']) {
-              continue;
+                if (substr_count($id, '/') > 2 && sizeof(array_filter(
+                        $twigVariables['results'],
+                        function ($e) {
+                            return $e->link == $page['meta']['link'];
+                        })) < 1) {
+                    if (strpos($page['raw_content'], $query)) {
+                        $page['link'] = $page['meta']['link'];
+                        $page['page'] = $page;
+                        array_push($twigVariables['results'], $page);
+                    }
+                }
+
+                continue;
             }
 
             preg_match_all($regex, $page['raw_content'], $matches, PREG_SET_ORDER);
             
             foreach ($matches as $index => $match) {
-              if (stripos($match['text'], $query) !== false) {
+              if (stripos($match['title'], $query) !== false ||
+                  stripos($match['content'], $query) !== false) {
                 $match['page'] = $page;
                 array_push($twigVariables['results'], $match);
               }
@@ -385,6 +398,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
      */
     public function onPageRendered(&$output)
     {
+        $output = preg_replace('/<h([0-9])>\s*(Network Experts?)/i', '<h$1 class="network-experts">$2', $output);
         // your code
     }
 }

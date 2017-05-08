@@ -97,3 +97,52 @@
     }
   }
 }
+
+$experts-bg: #FFF;//lighten($light-blue, 25%);
+.network-experts {
+  background-color: $experts-bg;
+  padding: 1rem;
+  margin-bottom: 0;
+  text-align: center;
+
+  + ul {
+    margin: 0;
+    background-color: $experts-bg;
+    padding: 1rem;
+    list-style-type: none;
+    text-align: center;
+    max-height: 325px;
+    overflow: auto;
+
+    li {
+      display: inline-block;
+      max-width: 100px;
+      vertical-align: top;
+      margin: 0.5em;
+      line-height: 1;
+
+      > img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1em;
+        border-radius: 25px;
+      }
+
+      > a {
+        font-size: 1.15em;
+        display: block;
+        margin-bottom: 0.5em;
+      }
+    }
+  }
+}
+
+@include breakpoint(medium up) {
+  .network-experts {
+    + ul {
+      li {
+        max-width: 150px;
+      }
+    }
+  }
+}
