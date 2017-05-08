@@ -108,7 +108,7 @@ $experts-bg: #FFF;//lighten($light-blue, 25%);
   + ul {
     margin: 0;
     background-color: $experts-bg;
-    padding: 1rem;
+    padding: 1rem 0;
     list-style-type: none;
     text-align: center;
     max-height: 325px;
@@ -116,7 +116,7 @@ $experts-bg: #FFF;//lighten($light-blue, 25%);
 
     li {
       display: inline-block;
-      max-width: 100px;
+      max-width: 85px;
       vertical-align: top;
       margin: 0.5em;
       line-height: 1;
