@@ -112,7 +112,8 @@ body {
 $notebook-ring-color: #CCC;
 #container {
   margin: 2em 3em 2em 1em;
-  padding: 2em;
+  padding: 2em 1.5em;
+  padding-right: 0.75em;
   background-color: #FFF;
   position: relative;
   border-radius: $global-radius;
@@ -120,6 +121,10 @@ $notebook-ring-color: #CCC;
   max-width: $global-width;
   border: 1px solid #000;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+  @include breakpoint (medium up) {
+    padding: 2em;
+  }
 
   &::after {
     content: ' ';
@@ -161,10 +166,14 @@ $notebook-ring-color: #CCC;
 
 #footer {
   color: $font-light;
-  padding: 2rem 1rem 1rem;
+  padding: 2rem 0.5em 1rem 0;
   margin-top: 2em;
   background-color: #F2F2F2;
   overflow: auto;
+
+  @include breakpoint (medium up) {
+    padding: 2rem 1rem 1rem;   
+  }
 
   a {
     color: $light-blue;

@@ -398,7 +398,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
      */
     public function onPageRendered(&$output)
     {
-        $output = preg_replace('/<h([0-9])>\s*(Network Experts?)/i', '<h$1 class="network-experts">$2', $output);
+        $output = preg_replace('/<h([0-9])>\s*(Network.+?Experts?)/i', '<h$1 class="network-experts">$2', $output);
         // your code
     }
 }
