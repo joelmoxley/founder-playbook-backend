@@ -6,7 +6,7 @@ if (file_exists('content') && !file_exists('content/.git')) {
 }
 
 if (file_exists('content')) {
-  exec('cd content && git reset --hard HEAD && git pull > /dev/null 2>/dev/null && git checkout develop');
+  exec('cd content && git reset --hard HEAD && git pull > /dev/null 2>/dev/null && git checkout master');
 } else {
   exec('git clone ' . $gitURL . ' content > /dev/null 2>/dev/null &');
 }
