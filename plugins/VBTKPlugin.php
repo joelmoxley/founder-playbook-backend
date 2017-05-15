@@ -87,14 +87,23 @@ final class VBTKPlugin extends AbstractPicoPlugin
 
         $uri = slugify(urldecode(strtok($_SERVER['REQUEST_URI'], '?')));
         $ext = pathinfo($uri)['extension'];
-        $contentDir = listDir('./content/');
+        $playbooks = listDir('./content/');
         $minDist = null;
         $minDistFile = null;
         $distance = null;
 
-        foreach ($contentDir as $f) {
-            if (strlen($ext) > 0 && $ext !== pathinfo($f)['extension']) {
-                continue;
+        foreach ($playbooks as $f) {
+            $fInfo = pathinfo($f);
+            $fExt = $fInfo['extension'];
+
+            if (!is_dir($f)) {
+                if (strlen($fInfo['filename']) < 1) {
+                    continue;
+                }
+
+                if (strlen($ext) > 0 && strlen($fExt) <= 6 && $ext !== $fExt) {
+                    continue;
+                }
             }
 
             $fRel = '/' . preg_replace('/^.?\/.+?\/content\//', '', $f);
@@ -349,42 +358,49 @@ final class VBTKPlugin extends AbstractPicoPlugin
 
         $twigVariables['ajax'] = isset($_GET['ajax']);
 
-        if ($twigVariables['current_page']['meta']['playbook']) {
-          $templateName = 'playbook.twig';
-        } else if ($twigVariables['current_page']['meta']['play'] ||
-                   $twigVariables['current_page']['meta']['chapter']) {
-          $templateName = 'play.twig';
+        $path = array_filter(explode('/', strtok($_SERVER['QUERY_STRING'], '&')));
+        $current_playbook = $playbooks[$current_playbook];
+        $contentDir = unserialize(file_get_contents('./content.txt'));
+        $playbooks = $contentDir['playbooks'];
+        $twigVariables['playbooks'] = $playbooks;
+        $playbookSlug = $path[0];
+        foreach ($playbooks as $playbook) {
+            if ($playbook['slug'] == $playbookSlug) {
+                break;
+            }
+
+            $playbook = null;
+        }
+
+        $twigVariables['current_playbook'] = $playbook;
+
+        if (sizeof($path) === 2) {
+            foreach ($playbook['plays'] as $play) {
+                if ($play['slug'] == $path[1]) {
+                    break;
+                }
+            }
+
+            $twigVariables['current_play'] = $play;
+
+            // $templateName = 'play.twig';
         } else if ($templateName == 'index.twig' && $query) {
           $templateName = 'search.twig';
 
           $twigVariables['query'] = htmlentities($query);
           $twigVariables['results'] = [];
 
-          foreach ($twigVariables['pages'] as $id => $page) {
-            if (!$page['meta']['play'] && !$page['meta']['section']) {
-                if (substr_count($id, '/') > 2 && sizeof(array_filter(
-                        $twigVariables['results'],
-                        function ($e) {
-                            return $e->link == $page['meta']['link'];
-                        })) < 1) {
-                    if (strpos($page['raw_content'], $query)) {
-                        $page['link'] = $page['meta']['link'];
-                        $page['page'] = $page;
-                        array_push($twigVariables['results'], $page);
-                    }
-                }
+          foreach ($contentDir['files'] as $file) {
+            $content = strtolower($file['name']);
 
-                continue;
+            if ($file['md']) {
+                // preg_match('/\{[^a-z]*(raw|search)-?content\:[^a-z0-9]+(.*)/si', file_get_contents($file['path']), $matches);
+                // $content .= strtolower($matches[2]);
+                $content .= file_get_contents($file['path']);
             }
 
-            preg_match_all($regex, $page['raw_content'], $matches, PREG_SET_ORDER);
-            
-            foreach ($matches as $index => $match) {
-              if (stripos($match['title'], $query) !== false ||
-                  stripos($match['content'], $query) !== false) {
-                $match['page'] = $page;
-                array_push($twigVariables['results'], $match);
-              }
+            if (stripos($content, $query) !== false) {
+                array_push($twigVariables['results'], $file);
             }
           }
         }

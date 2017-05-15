@@ -5,12 +5,10 @@
 	<h1>Table of Contents</h1>
 
 	<ul class="plays">
-        {% for page in pages|sort_by(['meta', 'play'])
-        	if page.meta.play
-        	and page.id starts with current_playbook %}
+        {% for play in current_playbook.plays %}
             <li>
-            	<a href="{{ page.url|replace({'/index': ''}) }}">
-                	{{ page.meta.play }}. {{ page.title }}
+            	<a href="/{{ current_playbook.slug }}/{{ play.slug }}">
+                	{{ play.name }} ({{ play.length }})
                 </a>
             </li>
         {% endfor %}

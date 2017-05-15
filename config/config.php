@@ -22,6 +22,10 @@
 $config['site_title'] = 'Playbooks';     // Site title
 // $config['base_url'] = '';                    // Override base URL (e.g. http://example.com)
 $config['rewrite_url'] = true;                  // A boolean indicating forced URL rewriting
+$config['git'] = array(
+  'url' => 'https://github.com/joelmoxley/founder-playbook',
+  'branch' => 'develop'
+);
 
 /*
  * THEME

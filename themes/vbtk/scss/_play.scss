@@ -2,6 +2,15 @@
   h1 {
     padding: 0.5rem 1rem;
     border-bottom: 1px solid $whitest;
+    margin-bottom: 1rem;
+
+    .edit-icon {
+      font-size: 1rem;
+      color: $light-blue;
+      float: right;
+      display: block;
+      padding: 1em;
+    }
   }
 
   h2, h3, h4 {
@@ -12,13 +21,37 @@
     margin-top: 1em;
   }
 
+  .play-footer {
+    position: relative;
+    margin-bottom: 2em;
+
+    .edit-icon {
+      position: absolute;
+      bottom: 1em;
+      right: 1em;
+    }
+  }
+
+  .play-files {
+    overflow: auto;
+  }
+
   .play-content {
     color: $font-light;
     padding-left: 0.5em;
     padding-right: 0.5em;
+    position: relative;
+    margin: 0;
+    overflow: auto;
 
     a {
       color: $light-blue;
+    }
+
+    .edit-icon {
+      position: absolute;
+      top: 1.5em;
+      right: 1em;
     }
 
     ol {
@@ -31,7 +64,11 @@
         margin-bottom: 0.25em;
       }
 
-      li > a, p:first-of-type > a:first-child {
+      li:nth-of-type(1n + 3):not(.show-more) {
+        display: none;
+      }
+
+      .filename {
         display: block;
         font-size: 1.2em;
 
@@ -46,7 +83,27 @@
         }
       }
 
-      li {
+      .show-more {
+        list-style-type: none;
+        text-align: center;
+
+        a {
+          display: block;
+          padding: 1em;
+        }
+      }
+
+      &:target, &.target-active {
+        li {
+          display: block !important;
+        }
+
+        .show-more {
+          display: none !important;
+        }
+      }
+
+      li:not(.show-more) {
         display: block;
         position: relative;
         padding: 1em 2em;
@@ -98,16 +155,13 @@
   }
 }
 
-$experts-bg: #FFF;//lighten($light-blue, 25%);
 .network-experts {
-  background-color: $experts-bg;
   padding: 1rem;
   margin-bottom: 0;
   text-align: center;
 
   + ul {
     margin: 0;
-    background-color: $experts-bg;
     padding: 1rem 0;
     list-style-type: none;
     text-align: center;

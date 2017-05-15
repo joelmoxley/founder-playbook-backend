@@ -63,6 +63,24 @@ body {
     }
   }
 
+  .row {
+    position: relative;
+  }
+
+  .icons {
+    position: absolute;
+    top: -1.5em;
+    right: 1em;
+
+    > .fa, > a {
+      font-size: 1.5rem;
+    }
+
+    .fa-creative-commons {
+      margin-right: 0.5rem;
+    }
+  }
+
   form {
     color: $dark-blue;
     display: block;
@@ -153,7 +171,6 @@ $notebook-ring-color: #CCC;
 
   h1:first-of-type {
     padding: 0.5rem 0.5rem;
-    margin: 0;
     border-bottom: 1px solid $whitest;
   }
 
@@ -317,7 +334,7 @@ $notebook-ring-color: #CCC;
   }
 
   #footer {
-    padding: 3rem 2rem 1rem 2rem;
+    padding: 2rem 2rem 1rem 2rem;
 
     h1, h2 {
       font-size: 1.25em;
