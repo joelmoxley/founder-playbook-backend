@@ -43,7 +43,16 @@ $(document).ready(function () {
 
     if (href.charAt(0) === '#') {
       e.preventDefault();
-      $(href).addClass('target-active');
+
+      if ($(href).hasClass('target-active')) {
+        $(href).removeClass('target-active');
+        $(this).text(this.oldText);
+      } else {
+        $(href).addClass('target-active');
+        this.oldText = $(this).text();
+        $(this).text('Hide');
+      }
+
       return;
     }
 
