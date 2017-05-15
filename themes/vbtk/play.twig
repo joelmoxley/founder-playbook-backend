@@ -32,7 +32,7 @@
                 {% set name = file.path|split('/')|last %}
                 {% set path = '/' ~ file.oldPath|split('/')|slice(0, -1)|join('/') ~ '/md/' ~ name %}
                 {% set edit = file.md ? 'edit' : 'new' %}
-                <a href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ path|url_encode }}/?filename={{ name|url_encode }}.md&value={{ pages['example']['raw_content']|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
+                <a href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ path|url_encode }}/?filename={{ name|url_encode }}&value={{ pages['example']['raw_content']|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
                 </a>
                 {{ file.content|markdown }}
             </li>
