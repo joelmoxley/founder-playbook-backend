@@ -72,7 +72,7 @@ $(document).ready(function () {
 
     var nextContent = $(this).parent().find('.content').html();
 
-    if (nextContent.length > 0 ) {
+    if (nextContent && nextContent.length > 0 ) {
       parent.addClass('selected');
       content.html(nextContent);
       getAdjacentPlays();
