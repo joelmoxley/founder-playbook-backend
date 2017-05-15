@@ -35,7 +35,7 @@ function getFiles($dir, &$length, $pathStr) {
 
       array_push($farray, [
         'oldPath' => preg_replace('/^.+?\/content\//', '', $path),
-        'path' => $pathStr . '/' . ($mdexists ? $mdvalue : $value), //,
+        'path' => getcwd() . '/content/' . $pathStr . '/' . ($mdexists ? 'md/' . $mdvalue : $value),
         'name' => preg_replace('/^[0-9]+[^A-Za-z]+/', '', preg_replace('/(\.[a-z0-9]{1,6})+/i', '', $value)),
         'slug' => $slug,
         'md' => $mdexists,
@@ -71,7 +71,7 @@ function getSections($dir, &$length, $pathStr) {
       $sections[$value] = [
         'name' => $value,
         'slug' => $slug,
-        'files' => getFiles($path, $slength, $pathStr . '/' . $slug),
+        'files' => getFiles($path, $slength, $pathStr . '/' . $value),
         'length' => $slength
       ];
 
@@ -102,7 +102,7 @@ function getPlays($dir, &$length, $pathStr) {
     $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
 
     if (!is_dir($path)) {
-    } else if (preg_match('/[A-Z]/', $value, $matches) && $value != "." && $value != "..") {
+    } else if ($value != "." && $value != "..") {
       $plength = 0;
       $slug = slugify($value);
 
@@ -145,7 +145,8 @@ function getPlaybooks($dir) {
     $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
 
     if (!is_dir($path)) {
-    } else if (preg_match('/[A-Z]/', $value, $matches) && strpos($value, '.') !== 0 && $value !== strtolower($value)) {
+    } else if ($value !== 'img' && strpos($value, '.') !== 0) {
+      echo $value."\n";
       $length = 0;
       $name = trim(preg_replace('/^[^\.]+\./', '', $value));
       $slug = slugify($name);
