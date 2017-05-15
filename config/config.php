@@ -24,7 +24,7 @@ $config['site_title'] = 'Playbooks';     // Site title
 $config['rewrite_url'] = true;                  // A boolean indicating forced URL rewriting
 $config['git'] = array(
   'url' => 'https://github.com/joelmoxley/founder-playbook',
-  'branch' => 'develop'
+  'branch' => 'master'
 );
 
 /*
