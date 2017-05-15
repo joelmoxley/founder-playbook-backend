@@ -50,13 +50,13 @@
     {% endspaceless %}
 
     <div id="container">
-{% endif %}
         {% if current_playbook %}
         <ul class="playbook-nav">
             <li {% if not current_play and current_playbook %} class="selected"{% endif %}>
                 <a title="{{ current_playbook.name }}" href="/{{ current_playbook.slug }}">
                     TOC
                 </a>
+                <div class="content"></div>
             </li>
             {% set count = 0 %}
             {% for play in current_playbook.plays %}
@@ -65,15 +65,18 @@
                     <a title="{{ page.title }}" href="/{{ current_playbook.slug }}/{{ play.slug }}">
                         {{ count }}
                     </a>
+                    <div class="content"></div>
                 </li>
             {% endfor %}
         </ul>
         {% endif %}
 
         <section class="row" id="content">
+{% endif %}
             {% block content %}{% endblock %}
         </section>
 
+{% if not ajax %}
         {% spaceless %}
         <div id="footer" class="row">
             {{ "footer"|content|markdown }}
@@ -85,7 +88,6 @@
             </div>
         </div>
         {% endspaceless %}
-{% if not ajax %}
     </div>
 </body>
 </html>

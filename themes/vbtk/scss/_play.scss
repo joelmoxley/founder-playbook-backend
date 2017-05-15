@@ -180,6 +180,7 @@
         height: 50px;
         margin-bottom: 1em;
         border-radius: 25px;
+        display: inline;
       }
 
       > a {
@@ -187,6 +188,10 @@
         display: block;
         margin-bottom: 0.5em;
       }
+    }
+
+    .slick-disabled {
+      display: none !important;
     }
   }
 }
