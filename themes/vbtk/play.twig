@@ -3,7 +3,13 @@
 {% block content %}
 <div class="column play-row">
   <h1>
-    {{ current_play.name }} ({{ current_play.length }})
+    {% if current_page.title is not empty %}
+      {{ current_page.title }}
+    {% else %}
+      {{ current_play.name }}
+    {% endif %}
+    
+    ({{ current_play.length }})
 
     {% set edit = current_play.hasIndex ? 'edit' : 'new' %}
     <a title="Edit header" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/index.md?filename=index.md&value={{ "---\ntemplate: play\n---\n\nThis content will appear at the top of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
