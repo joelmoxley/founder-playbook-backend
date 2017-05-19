@@ -1,0 +1,46 @@
+{% extends "_layout.twig" %}
+
+{% block content %}
+<div class="column file-tree">
+  <ul class="tree-playbooks">
+    {% for playbook in playbooks %}
+        <li class="folder">
+          <a href="/{{ playbook.slug }}">
+              {{ playbook.name }} <span class="count">{{ playbook.length }}</span>
+          </a>
+          <ul class="tree-plays">
+            {% for play in playbook.plays %}
+            <li>
+              <a href="/{{ play.path }}">
+                  {{ play.name }} <span class="count">{{ play.length }}</span>
+              </a>
+
+              <ul class="tree-section">
+                {% for section in play.sections %}
+                <li>
+                  {% if section.name %}
+                  <a href="{{ play.path }}/{{ section.slug }}">
+                      {{ section.name }} <span class="count">{{ section.length }}</span>
+                  </a>
+                  {% endif %}
+
+                  <ul class="tree-files">
+                  {% for file in section.files %}
+                    <li>
+                      <a class="file" target="_blank" href="{{ file.url }}">
+                        {{ file.name }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

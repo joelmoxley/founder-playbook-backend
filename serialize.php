@@ -141,7 +141,9 @@ function getPlaybooks($dir) {
   $files = scandir($dir);
   $playbooks = [];
 
-  foreach ($files as $key => $value){
+  file_put_contents($dir . DIRECTORY_SEPARATOR . 'tree.md', "---\ntemplate: tree\n---\n");
+
+  foreach ($files as $key => $value) {
     $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
 
     if (!is_dir($path)) {
@@ -182,6 +184,7 @@ $object = [
 ];
 
 print_r($object);
+
 
 file_put_contents($output, serialize($object));
 ?>

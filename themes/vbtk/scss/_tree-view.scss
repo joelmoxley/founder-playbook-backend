@@ -1,0 +1,156 @@
+#tree-view {
+  background-color: $white;
+
+  #header {
+    nav {
+      display: none;
+    }
+  }
+
+  #container {
+    border: none;
+    box-shadow: none;
+    padding: 0 0.5em;
+    margin: 0 auto;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  .file-tree {
+    > ul {
+      margin: 0;
+      color: $dark-blue;
+
+      > li {
+        border-bottom: 1px solid #CCC;
+        font-size: 1.25em;
+        padding-bottom: 0.5em;
+        margin-top: 0.5em;
+
+        @include breakpoint (medium up) {
+          font-size: 1.5em;
+        }
+
+        > a {
+          font-size: inherit;
+        }
+
+        &:after {
+          content: '\f054';
+          color: $light-blue;
+          font-family: FontAwesome;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+
+        &.expanded {
+          &:after {
+            content: '\f078';
+          }
+        }
+
+        li {
+          margin-left: 1em;
+
+          @include breakpoint (medium up) {
+            margin-left: 2em;
+          }
+        }
+      }
+    }
+
+    span.count {
+      font-size: 0.75rem;
+      padding: 0 0.5em;
+      background-color: #FCFCFC;
+      border: 1px solid #E2E0DE;
+      border-radius: 3px;
+      vertical-align: middle;
+      display: inline-block;
+      margin-left: 0.5em;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    li > ul {
+      margin: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s 0s;
+    }
+
+    li {
+      font-size: 1rem;
+      position: relative;
+
+      a {
+        color: inherit;
+        font-size: 1rem;
+        display: block;
+        padding-left: 2em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      &:first-child {
+        margin-top: 0.5em;
+      }
+
+      &:last-child {
+        margin-bottom: 0.5em;
+      }
+
+      &:before {
+        content: '\f07b';
+        color: $dark-blue;
+        font-family: FontAwesome;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0.5em;
+        margin-right: 0.5em;
+      }
+
+      &.expanded {
+        &:before {
+          content: '\f07c';
+        }
+      }
+    }
+
+    .expanded > ul {
+      max-height: 1000px;
+    }
+
+    .tree-files {
+      li {
+        @include breakpoint (small only) {
+          margin-left: 0;
+        }
+
+        a {
+          color: $light-blue;
+        }
+
+        &:before {
+          content: '\f15b';
+          color: $light-blue;
+        }
+      }
+    }
+  }
+
+  #footer-wrap {
+    background-color: $footer-background-color;
+  }
+
+  #footer {
+    padding: 2em 0;
+  }
+}

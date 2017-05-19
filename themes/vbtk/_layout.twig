@@ -15,12 +15,17 @@
     <link rel="stylesheet" href="{{ theme_url }}/build/css/style.css?{{ random()}}" type="text/css" />
     <script src="{{ theme_url }}/build/js/scripts.js?{{ random()}}"></script>
 </head>
-<body>
+<body {% if current_page.id == 'tree' %}id="tree-view"{% endif %}>
 
     {% spaceless %}
     <header id="header">
         <div class="row column">
             <h1><a href="{{ "index"|link }}" id="logo">{{ site_title }}</a></h1>
+
+            <div class="view-mode">
+                <a href="/" {% if current_page.id != 'tree' %}class="active"{% endif %}>Playbooks</a>
+                <a href="/tree" {% if current_page.id == 'tree' %}class="active"{% endif %}>File Tree</a>
+            </div>
 
             <form action="/">
                 <input type="text" name="query" value="{{ query }}" />
@@ -75,7 +80,9 @@
 {% endif %}
             {% block content %}{% endblock %}
         </section>
-
+{% if current_page.id == 'tree' %}
+    </div><div id="footer-wrap">
+{% endif %}
 {% if not ajax %}
         {% spaceless %}
         <div id="footer" class="row">

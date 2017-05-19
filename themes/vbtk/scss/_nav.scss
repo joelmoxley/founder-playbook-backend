@@ -1,19 +1,44 @@
 nav {
   font-size: 1em;
   font-weight: 600;
-  color: $dark-blue;
-  background-color: #9CDBF9;
+  color: $lighter-blue;
+  background-color: $dark-blue;
 
   ul {
     margin: 0;
-    padding: 0;
     list-style-type: none;
+    padding-top: 1em;
+
+    @include breakpoint (small only) {
+      text-align: center;
+
+      .selected {
+        width: 95%;
+        background-color: $lighter-blue;
+
+        a {
+          color: $dark-blue !important;
+          border-color: #5AC3F5;
+        }
+      }
+    }
+
+    &:before {
+      content: 'Select a Playbook';
+      display: block;
+      text-align: center;
+      color: $white;
+      text-transform: uppercase;
+      line-height: 2;
+    }
 
     a {
-      display: inline-block;
-      padding: 0.5em 1.25em;
+      margin: 0 1em;
+      display: block;
+      padding: 0.75em 1.25em;
       text-transform: uppercase;
-      transition: background-color 0.25s;
+      border-left: 1em double #4A6879;
+      border-right: 1em double #4A6879;
     }
 
     li {
@@ -23,150 +48,50 @@ nav {
       width: 100%;
       line-height: 1;
       vertical-align: middle;
-
-      &:not(.selected):hover {
-        background-color: rgba($white, 0.45);
-      }
-    }
-
-    .selected {
-      background-color: $white;
+      margin-bottom: 1px;
+      background-color: #46525A;
+      border-radius: 5px;
+      margin: 0 auto;
+      width: 90%;
+      margin-bottom: 1px;
+      white-space: nowrap;
     }
   }
 }
 
 @include breakpoint (medium up) {
   nav {
+    color: $dark-blue;
+    background-color: $lighter-blue;
+
     ul {
+      padding: 0;
+
+      &:before {
+        display: none;
+      }
+
       a {
-        width: 100%;
+        margin: 0;
+        padding: 0.5em 1.25em;
+        border: none;
       }
 
-      li {
-        width: 250px;
-        text-align: center;
-      }
-    }
-  }
-}
-
-@include breakpoint (950px) {
-  nav {
-    ul {
       li {
         width: auto;
+        background: none;
+        background-color: $lighter-blue;
+        border-radius: 0;
+        // width: 250px;
+
+        &:not(.selected):hover {
+          background-color: rgba($white, 0.45);
+        }
+
+        .selected {
+          background-color: $white;
+        }
       }
     }
   }
 }
-// nav {
-//   position: relative;
-
-//   h1 {
-//     margin: 0;
-//     padding: 0;
-//     height: 2.5em;
-//   }
-
-//   label[for="search"], ul {
-//     color: $dark-blue;
-//     margin: 0;
-//     border: 0;
-//     font-size: inherit;
-//     text-transform: uppercase; 
-//     display: inline-block;
-//     width: auto;
-//     position: absolute;
-//     top: 0;
-//     z-index: 1;
-//     overflow: visible;
-//   }
-
-//   ul {
-//     list-style-type: none;
-//     border-radius: $global-radius;
-//     border-bottom-left-radius: 0;
-//     border-bottom-right-radius: 0;
-//     background-color: $lighter-blue;
-//     padding-top: 1em;
-
-//     &::before {
-//       content: 'Current Playbook';
-//       font-size: 0.5em;
-//       display: block;
-//       top: 0.5em;
-//       left: 2em;
-//       color: $dark-blue;
-//       position: absolute;
-//       text-transform: uppercase;
-//       z-index: 3;
-//     }
-
-//     &::after {
-//       content: '\f0d7';
-//       font-family: FontAwesome;
-//       position: absolute;
-//       top: 0.85em;
-//       right: 0.75em;
-//       z-index: 3;
-//     }
-
-//     a {
-//       color: inherit;
-//       display: block;
-//       padding: 0.25em 2em 0.25em 1em;
-//     }
-
-//     li {
-//       display: none;
-//       position: relative;
-//       cursor: pointer;
-//       line-height: 1;
-
-//       &:first-child {
-//         padding: 0.25em 2em 0.25em 1em;
-//       }
-//       &:last-child {
-//         border-bottom-left-radius: $global-radius;
-//         border-bottom-right-radius: $global-radius;
-//       }
-//     }
-
-//     .selected {
-//       display: block;
-//     }
-
-//     &:hover {
-//       color: #AAA;
-//       background-color: #EEE;
-//       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-//       border-bottom-left-radius: $global-radius;
-//       border-bottom-right-radius: $global-radius;
-
-//       li {
-//         display: block;
-//         background-color: $white;
-//         font-weight: 400;
-
-//         &:hover {
-//           background-color: $light-blue;
-//           color: $white;
-//         }
-
-//         &:first-child {
-//           color: #333;
-//           background-color: #EEE;
-//           font-weight: 500;
-//         }
-//       }
-//     }
-//   }
-
-
-//   label[for="search"] {
-//     right: 1.5em;
-//     color: $white;
-//     padding-top: 0.5em;
-//     font-size: 1.5em;
-//   }
-// }
