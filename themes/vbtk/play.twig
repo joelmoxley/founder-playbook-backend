@@ -24,7 +24,7 @@
           <h2>{{ section.name }} ({{ section.length }})</h2>
         {% endif %}
 
-        <ol id="{{ section.slug }}">
+        <ol class="{{ section.slug }}">
           {% for file in section.files %}
             {% set url = file.url ? file.url : [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
             <li>
