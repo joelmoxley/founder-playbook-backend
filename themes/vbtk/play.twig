@@ -6,7 +6,7 @@
     {{ current_play.name }} ({{ current_play.length }})
 
     {% set edit = current_play.hasIndex ? 'edit' : 'new' %}
-    <a href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/index.md?filename=index.md&value={{ "This content will appear at the top of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
+    <a href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/index.md?filename=index.md&value={{ "---\ntemplate: play\n---\n\nThis content will appear at the top of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
     </a>
   </h1>
 
