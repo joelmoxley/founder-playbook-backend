@@ -41,7 +41,7 @@ $(document).ready(function () {
     return e.preventDefault();
   });
 
-  $('.playbook-nav').on('click', 'a', function (e) {
+  $('.show-more').on('click', 'a', function (e) {
     var href = $(this).attr('href');
 
     if (href.charAt(0) === '#') {
@@ -59,6 +59,10 @@ $(document).ready(function () {
 
       return;
     }
+  });
+
+  $('.playbook-nav').on('click', 'a', function (e) {
+    var href = $(this).attr('href');
 
     if (/^https?:/.test(href) || href.indexOf('.') !== -1) {
       return;
