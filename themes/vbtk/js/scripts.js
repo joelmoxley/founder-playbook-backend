@@ -41,7 +41,7 @@ $(document).ready(function () {
     return e.preventDefault();
   });
 
-  $('body:not(#tree-view)').find(container).on('click', 'a:not(.show-more)', function (e) {
+  $('.playbook-nav').on('click', 'a', function (e) {
     var href = $(this).attr('href');
 
     if (href.charAt(0) === '#') {
