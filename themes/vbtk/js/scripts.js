@@ -94,7 +94,7 @@ $(document).ready(function () {
   if (playbookNav.length > 0) {
     getAdjacentPlays();
 
-    $(content).swipe({
+    $(document.body).swipe({
       swipe: onSwipe
     });
   }
