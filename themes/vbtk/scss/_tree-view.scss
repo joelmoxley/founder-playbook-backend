@@ -33,8 +33,20 @@
           font-size: 1.5em;
         }
 
-        > a {
+        a {
           font-size: inherit;
+          position: relative;
+
+          &:before {
+            content: '\f07b';
+            color: $dark-blue;
+            font-family: FontAwesome;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0.5em;
+            margin-right: 0.5em;
+          }
         }
 
         &:after {
@@ -47,6 +59,7 @@
         }
 
         &.expanded {
+
           &:after {
             content: '\f078';
           }
@@ -88,6 +101,14 @@
       font-size: 1rem;
       position: relative;
 
+
+      &.expanded {
+        > a {
+          &:before {
+            content: '\f07c';
+          }
+        }
+      }
       a {
         color: inherit;
         font-size: 1rem;
@@ -105,23 +126,6 @@
       &:last-child {
         margin-bottom: 0.5em;
       }
-
-      &:before {
-        content: '\f07b';
-        color: $dark-blue;
-        font-family: FontAwesome;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0.5em;
-        margin-right: 0.5em;
-      }
-
-      &.expanded {
-        &:before {
-          content: '\f07c';
-        }
-      }
     }
 
     .expanded > ul {
@@ -136,11 +140,11 @@
 
         a {
           color: $light-blue;
-        }
 
-        &:before {
-          content: '\f15b';
-          color: $light-blue;
+          &:before {
+            content: '\f15b' !important;
+            color: $light-blue;
+          }
         }
       }
     }

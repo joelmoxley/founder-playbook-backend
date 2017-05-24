@@ -35,8 +35,10 @@ function getFiles($dir, &$length, $pathStr) {
 
       array_push($farray, [
         'oldPath' => preg_replace('/^.+?\/content\//', '', $path),
-        'path' => getcwd() . '/content/' . $pathStr . '/' . ($mdexists ? 'md/' . $mdvalue : $value),
+        'path' => getcwd() . '/content/' . $pathStr . '/' . $value,
+        'mdpath' => getcwd() . '/content/' . $pathStr . '/md/' . $mdvalue,
         'name' => preg_replace('/^[0-9]+[^A-Za-z]+/', '', preg_replace('/(\.[a-z0-9]{1,6})+/i', '', $value)),
+        'origName' => $value,
         'slug' => $slug,
         'md' => $mdexists,
         'content' => ($mdexists ? trim(preg_replace('/\{[^a-z]*(raw|search)-?content\:.*/si', '', file_get_contents($mdpath))) : ''),
@@ -64,7 +66,7 @@ function getSections($dir, &$length, $pathStr) {
     $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
 
     if (!is_dir($path)) {
-    } else if (strpos($value, '.') !== 0) {
+    } else if (strpos($value, '.') !== 0 && $value !== 'md') {
       $slength = 0;
       $slug = slugify($value);
 

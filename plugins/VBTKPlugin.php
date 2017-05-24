@@ -352,6 +352,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
     public function onPageRendering(Twig_Environment &$twig, array &$twigVariables, &$templateName)
     {
         $query = $_GET['query'];
+        $sanitizedQuery = sanitize($query);
         $regex = '/\n\s*(?<number>[0-9]+)\.\s*\[(?<title>[^\]]+)\]\((?<link>[^\)]+)\)(?<content>((?!\n\s*[0-9]+\.).)+)?/si';
 
         $twig->addExtension(new Twig_Extension_Debug());
@@ -396,10 +397,10 @@ final class VBTKPlugin extends AbstractPicoPlugin
             if ($file['md']) {
                 // preg_match('/\{[^a-z]*(raw|search)-?content\:[^a-z0-9]+(.*)/si', file_get_contents($file['path']), $matches);
                 // $content .= strtolower($matches[2]);
-                $content .= file_get_contents($file['path']);
+                $content .= sanitize(file_get_contents($file['mdpath']));
             }
 
-            if (stripos($content, $query) !== false) {
+            if (stripos($content, $sanitizedQuery) !== false) {
                 array_push($twigVariables['results'], $file);
             }
           }
@@ -417,6 +418,10 @@ final class VBTKPlugin extends AbstractPicoPlugin
         $output = preg_replace('/<h([0-9])>\s*(Network.+?Experts?)/i', '<h$1 class="network-experts">$2', $output);
         // your code
     }
+}
+
+function sanitize($string) {
+    return preg_replace('/[^a-z0-9]/', '', strtolower($string));
 }
 
 function slugify($string) {

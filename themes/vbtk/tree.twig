@@ -15,25 +15,28 @@
                   {{ play.name }} <span class="count">{{ play.length }}</span>
               </a>
 
-              <ul class="tree-section">
+              <ul class="tree-section{% if play.sections|length == 1 and not play.sections[0].name %} tree-files{% endif %}">
                 {% for section in play.sections %}
+                {% if section.name %}
                 <li>
-                  {% if section.name %}
                   <a href="{{ play.path }}/{{ section.slug }}">
                       {{ section.name }} <span class="count">{{ section.length }}</span>
                   </a>
-                  {% endif %}
 
                   <ul class="tree-files">
+                  {% endif %}
+
                   {% for file in section.files %}
                     <li>
                       <a class="file" target="_blank" href="{{ file.url }}">
-                        {{ file.name }}
+                        {{ file.origName }}
                       </a>
                     </li>
                   {% endfor %}
+                  {% if section.name %}
                   </ul>
                 </li>
+                {% endif %}
                 {% endfor %}
               </ul>
             </li>
