@@ -2,7 +2,7 @@
     RewriteEngine On
     # May be required to access sub directories
 
-    RewriteCond %{REQUEST_URI} \.(jpg|png|pdf|ppt|pptx|doc|docx|webloc)$
+    RewriteCond %{REQUEST_URI} \.(jpg|png|pdf|ppt|pptx|doc|docx|webloc|rtf|txt)$
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{DOCUMENT_ROOT}/content%{REQUEST_URI} -f
     RewriteRule ^(.*)$ /content/$1 [L]

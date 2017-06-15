@@ -30,7 +30,6 @@ $(document).ready(function () {
     $('.footer-about, .join-community, #footer hr').hide();
   }
 
-
   loadFileExts();
 
   $('#tree-view').find(content).on('click', 'a:not(.file)', function (e) {
