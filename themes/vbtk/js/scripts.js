@@ -41,27 +41,22 @@ $(document).ready(function () {
     return e.preventDefault();
   });
 
-  $('.show-more').on('click', 'a', function (e) {
-    var href = $(this).attr('href');
+  $(content).on('click', '.show-more > a', function (e) {
+    var parent = $(this).parent().parent();
 
-    if (href.charAt(0) === '#') {
-      e.preventDefault();
-      href = '.' + href.substr(1);
+    e.preventDefault();
 
-      if ($(href).hasClass('target-active')) {
-        $(href).removeClass('target-active');
-        $(this).text(this.oldText);
-      } else {
-        $(href).addClass('target-active');
-        this.oldText = $(this).text();
-        $(this).text('Hide');
-      }
-
-      return;
+    if (parent.hasClass('target-active')) {
+      parent.removeClass('target-active');
+      $(this).text(this.oldText);
+    } else {
+      parent.addClass('target-active');
+      this.oldText = $(this).text();
+      $(this).text('Hide');
     }
   });
 
-  $('.playbook-nav').on('click', 'a', function (e) {
+  $('.playbook-nav li > a').on('click', function (e) {
     var href = $(this).attr('href');
 
     if (/^https?:/.test(href) || href.indexOf('.') !== -1) {
