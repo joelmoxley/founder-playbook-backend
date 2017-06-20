@@ -2,6 +2,14 @@
     RewriteEngine On
     # May be required to access sub directories
 
+    AddType application/octet-stream .csv
+    AddType application/octet-stream .xls
+    AddType application/octet-stream .xlsx
+    AddType application/octet-stream .doc
+    AddType application/octet-stream .docx
+    AddType application/octet-stream .ppt
+    AddType application/octet-stream .pptx
+    AddType application/octet-stream .webloc
     AddType application/octet-stream .rtf
     AddType application/octet-stream .txt
 
