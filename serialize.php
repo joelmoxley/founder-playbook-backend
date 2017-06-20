@@ -37,7 +37,7 @@ function getFiles($dir, &$length, $pathStr) {
         'oldPath' => preg_replace('/^.+?\/content\//', '', $path),
         'path' => getcwd() . '/content/' . $pathStr . '/' . $value,
         'mdpath' => getcwd() . '/content/' . $pathStr . '/md/' . $mdvalue,
-        'name' => preg_replace('/^[0-9]{1,2}[^A-Za-z]+/', '', preg_replace('/(\.[a-z0-9]{1,6})+/i', '', $value)),
+        'name' => preg_replace('/^[0-9]{1,2}\s*[\.\-]\s+/', '', preg_replace('/(\.[a-z0-9]{1,6})+/i', '', $value)),
         'origName' => $value,
         'slug' => $slug,
         'md' => $mdexists,
