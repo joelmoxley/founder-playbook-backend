@@ -159,6 +159,8 @@ final class VBTKPlugin extends AbstractPicoPlugin
     public function onContentLoaded(&$rawContent)
     {
         // your code
+
+        $rawContent = trim(preg_replace('/\{[^a-z]*(raw|search)-?content\:.*/si', '', $rawContent));
     }
 
     /**
