@@ -33,8 +33,24 @@ function getFiles($dir, &$length, $pathStr) {
         // $value = $mdvalue;
       }
 
-      $content = ($mdexists ? trim(preg_replace('/\{[^a-z]*(raw|search)-?content\:.*/si', '', file_get_contents($mdpath))) : '');
-      $fullArticle = ($mdexists ? trim(preg_replace('/.*\{[^a-z]*(raw|search)-?content\:/si', '', file_get_contents($mdpath))) : '');
+      if ($mdexists) {
+        $mdcontent = file_get_contents($mdpath);
+      } else {
+        $mdcontent = '';
+      }
+
+      preg_match_all('/(.*)\{[^a-z]*(raw|search)-?content\:[^a-z]*\}(.*)/si', $mdcontent, $matches, PREG_PATTERN_ORDER);
+
+      $content = '';
+      $searchContent = '';
+
+      if ($matches[1]) {
+        $content = implode('', $matches[1]);
+      }
+
+      if ($matches[3]) {
+        $searchContent = implode('', $matches[3]);
+      }
 
       array_push($farray, [
         'oldPath' => preg_replace('/^.+?\/content\//', '', $path),
@@ -44,9 +60,12 @@ function getFiles($dir, &$length, $pathStr) {
         'origName' => $value,
         'slug' => $slug,
         'md' => $mdexists,
-        'content' => $fullArticle,
-        'duration' => sizeof(explode(' ', $fullArticle))/400,
-        'url' => '/' . $pathStr . '/' . $slug
+        'duration' => sizeof(explode(' ', $searchContent))/400,
+        'content' => $content,
+        'searchContent' => $searchContent,
+        'fileURL' => '/' . $pathStr . '/' . $slug,
+        'url' => '/' . $pathStr . '/md/' . $slug
+
       ]);
 
       if (strpos($value, '.webloc') !== false) {
