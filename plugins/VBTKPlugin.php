@@ -79,6 +79,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
      */
     public function onRequestFile(&$file)
     {
+        return;
         if (file_exists($file)) {
             return;
         }

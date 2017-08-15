@@ -33,6 +33,9 @@ function getFiles($dir, &$length, $pathStr) {
         // $value = $mdvalue;
       }
 
+      $content = ($mdexists ? trim(preg_replace('/\{[^a-z]*(raw|search)-?content\:.*/si', '', file_get_contents($mdpath))) : '');
+      $fullArticle = ($mdexists ? trim(preg_replace('/.*\{[^a-z]*(raw|search)-?content\:/si', '', file_get_contents($mdpath))) : '');
+
       array_push($farray, [
         'oldPath' => preg_replace('/^.+?\/content\//', '', $path),
         'path' => getcwd() . '/content/' . $pathStr . '/' . $value,
@@ -41,7 +44,8 @@ function getFiles($dir, &$length, $pathStr) {
         'origName' => $value,
         'slug' => $slug,
         'md' => $mdexists,
-        'content' => ($mdexists ? trim(preg_replace('/\{[^a-z]*(raw|search)-?content\:.*/si', '', file_get_contents($mdpath))) : ''),
+        'content' => $fullArticle,
+        'duration' => sizeof(explode(' ', $fullArticle))/400,
         'url' => '/' . $pathStr . '/' . $slug
       ]);
 

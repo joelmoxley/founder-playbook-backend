@@ -34,7 +34,7 @@
           {% for file in section.files %}
             {% set url = file.url ? file.url : [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
             <li>
-                <a href="{{ url }}" class="filename">{{ file.name }}</a>
+                <a href="{{ url }}" class="filename">{{ file.name }}</a> | {{ file.duration|round(0, 'ceil') }} minute read
                 {% set name = file.mdpath|split('/')|last %}
                 {% set path = '/' ~ file.oldPath|split('/')|slice(0, -1)|join('/') ~ '/md/' ~ name %}
                 {% set edit = file.md ? 'edit' : 'new' %}
