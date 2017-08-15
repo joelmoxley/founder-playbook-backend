@@ -33,6 +33,7 @@
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",
     "gulp-cssnano": "^2.1.2",
+    "gulp-google-webfonts": "^0.0.14",
     "gulp-jshint": "^2.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
@@ -40,8 +41,8 @@
     "gulp-uglify": "^2.0.0",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.1",
-    "sass-module-importer": "^1.4.0",
-    "gulp-google-webfonts": "^0.0.14",
-    "normalize.css": "^6.0.0"
+    "just-indent": "0.0.1",
+    "normalize.css": "^6.0.0",
+    "sass-module-importer": "^1.4.0"
   }
 }
