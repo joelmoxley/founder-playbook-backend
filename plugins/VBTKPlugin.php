@@ -83,7 +83,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
             return;
         }
 
-        $silentRedirectMarkdown = false;
+        $silentRedirectMarkdown = true;
 
         $uri = slugify(urldecode(strtok($_SERVER['REQUEST_URI'], '?')));
         $ext = pathinfo($uri)['extension'];
@@ -127,7 +127,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
             }
 
             if (strpos($minDistFile, '.md') !== false) {
-                $file = $minDistFile;
+                $file = getcwd() . '/content' . $minDistFile;
                 return;
             }
         }
