@@ -8,22 +8,24 @@ $(document).ready(function () {
       content = $('#content'),
       playbookNav = $('.playbook-nav'),
       loadFileExts = function () {
-        $('.play-content li .filename').attr('target', 'blank').each(function () {
-          var el = $(this).parent(),
-              href = $(this).attr('href');
+        $('.play-content li .filename')
+          // .attr('target', 'blank')
+          .each(function () {
+            var el = $(this).parent(),
+                href = $(this).attr('href');
 
-          if (href.indexOf('youtube.com') !== -1) {
-            return el.addClass('youtube');
-          }
+            if (href.indexOf('youtube.com') !== -1) {
+              return el.addClass('youtube');
+            }
 
-          if (href.substr(0, 4) === 'http') {
-            return el.addClass('external');
-          }
+            if (href.substr(0, 4) === 'http') {
+              return el.addClass('external');
+            }
 
-          href.replace(/\.[a-z]{2,6}$/, function (m) {
-            el.addClass(m.substr(1, 3));
+            href.replace(/\.[a-z]{2,6}$/, function (m) {
+              el.addClass(m.substr(1, 3));
+            });
           });
-        });
       };
 
   if (['/', '/index', '/tree'].indexOf(window.location.pathname) === -1) {
