@@ -359,7 +359,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
         foreach ($queryValues as &$value) {
             $value = sanitize($value);
         }
-        
+
         $regex = '/\n\s*(?<number>[0-9]+)\.\s*\[(?<title>[^\]]+)\]\((?<link>[^\)]+)\)(?<content>((?!\n\s*[0-9]+\.).)+)?/si';
 
         $twig->addExtension(new Twig_Extension_Debug());
@@ -392,6 +392,8 @@ final class VBTKPlugin extends AbstractPicoPlugin
             $twigVariables['current_play'] = $play;
 
             // $templateName = 'play.twig';
+        } else if (in_array('md', $path)) {
+            $templateName = 'file.twig';
         } else if ($templateName == 'index.twig' && $query) {
           $templateName = 'search.twig';
 
