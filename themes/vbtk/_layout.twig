@@ -44,7 +44,7 @@
                     {% for playbook in playbooks%}
                         <li {% if playbook.slug == current_playbook.slug %} class="selected"{% endif %}>
                             <a href="/{{ playbook.slug }}">
-                                {{ playbook.name }} ({{ playbook.length }})
+                                {{ playbook.name }}
                             </a>
                         </li>
                     {% endfor %}
@@ -85,16 +85,23 @@
 {% endif %}
 {% if not ajax %}
         {% spaceless %}
-        <div id="footer" class="row">
-            {{ "footer"|content|markdown }}
-
+<!--         <div id="footer" class="row">
             <div class="social">
                 {% for social in meta.social %}
                     <a href="{{ social.url }}" title="{{ social.title }}"><span class="icon-{{ social.icon }}"></span></a>
                 {% endfor %}
             </div>
-        </div>
+        </div> -->
         {% endspaceless %}
+    </div>
+
+    <div class="small-12 footer-container">
+        <div class="row">
+            <div class="small-12 medium-12 large-10 large-centered">
+                {{ "footer"|content|markdown }}
+            </div>
+        </div>
+        
     </div>
 </body>
 </html>

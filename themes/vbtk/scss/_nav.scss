@@ -1,8 +1,8 @@
 nav {
   font-size: 1em;
   font-weight: 600;
-  color: $lighter-blue;
-  background-color: $dark-blue;
+  color: $orange;
+  background-color: $nav-gray;
 
   ul {
     margin: 0;
@@ -14,7 +14,7 @@ nav {
 
       .selected {
         width: 95%;
-        background-color: $lighter-blue;
+        background-color: $orange;
 
         a {
           color: $dark-blue !important;
@@ -61,8 +61,8 @@ nav {
 
 @include breakpoint (medium up) {
   nav {
-    color: $dark-blue;
-    background-color: $lighter-blue;
+    background-color: $nav-gray;
+    text-align: center;
 
     ul {
       padding: 0;
@@ -73,14 +73,21 @@ nav {
 
       a {
         margin: 0;
-        padding: 0.5em 1.25em;
+        padding: 0.65em 1.25em;
         border: none;
+        color: black;
+        font-family: FuturaPT-Medium;
+        font-size: 17px;
+        color: #382F2D;
+        letter-spacing: 0;
+        line-height: 24px;
+        font-weight: lighter;
       }
 
       li {
         width: auto;
         background: none;
-        background-color: $lighter-blue;
+        background-color: $nav-gray;
         border-radius: 0;
         // width: 250px;
 

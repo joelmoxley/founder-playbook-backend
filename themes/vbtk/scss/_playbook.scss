@@ -4,13 +4,16 @@
   }
 }
 
+  .selected {
+    background-color: white;
+  }
+
   .plays, .search-results {
     margin: 0;
-    padding: 0;
     list-style-type: none;
 
     a {
-      color: $light-blue;
+      color: $orange;
       display: block;
       font-size: 1.25em;
       padding: 0.5rem 0.5rem;
@@ -23,11 +26,11 @@
 
       &:active, &:hover {
         color: $white;
-        background-color: $light-blue;
+        background-color: $orange;
       }
       
       &::after {
-        content: '\f0da';
+        content: '\f054';
         font-family: FontAwesome;
         display: block;
         position: absolute;
@@ -44,20 +47,28 @@
     }
   }
 
+  .plays {
+    li {
+      a {
+        padding: 10px 30px;
+      }
+    }
+  }
+
 .playbook-nav {
   position: absolute;
-  right: -2.5em;
+  right: -.75em;
   top: 2em;
 
   a {
-    color: $light-blue;
+    color: $white;
     font-weight: bold;
     padding: 0.73em 0.5em;
     display: block;
   }
 
   li {
-    background-color: rgba(white, 0.25);
+    background-color: $light-brown;
     display: block;
     text-align: center;
     border-radius: $global-radius;
@@ -67,7 +78,7 @@
     transition: background-color 0.5s;
 
     &:not(.selected):hover {
-      background-color: rgba($light-blue, 0.95);
+      background-color: rgba($orange, 0.95);
 
       a {
         color: $white;
@@ -83,7 +94,7 @@
     background-color: $white;
 
     a {
-      color: $dark-blue;
+      color: $orange;
       font-weight: 600;
     }
   }
@@ -91,8 +102,12 @@
 
 @include breakpoint (medium up) {
   .playbook-nav {
-    right: -3em;
+    right: -3.0em;
     top: 2.5em;
+    font-family: Rajdhani-Semibold;
+    font-size: 20px;
+    color: #FFFFFF;
+    line-height: 24px;
 
     a {
       padding: 0.73em;

@@ -2,16 +2,16 @@
 
 {% block content %}
 <div class="column playbook">
-	<h1>Table of Contents</h1>
+	<h1>{{ current_playbook.name }}: Table of Contents</h1>
 
-	<ul class="plays">
+	<ol class="plays">
         {% for play in current_playbook.plays %}
             <li>
             	<a href="/{{ current_playbook.slug }}/{{ play.slug }}">
-                	{{ play.name }} ({{ play.length }})
+                    {{ play.name }}
                 </a>
             </li>
         {% endfor %}
-	</ul>
+	</ol>
 </div>
 {% endblock %}
