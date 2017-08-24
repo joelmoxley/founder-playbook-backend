@@ -84,7 +84,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
             return;
         }
 
-        $silentRedirectMarkdown = false;
+        $silentRedirectMarkdown = true;
 
         $uri = slugify(urldecode(strtok($_SERVER['REQUEST_URI'], '?')));
         $ext = pathinfo($uri)['extension'];
@@ -128,7 +128,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
             }
 
             if (strpos($minDistFile, '.md') !== false) {
-                $file = $minDistFile;
+                $file = getcwd() . '/content' . $minDistFile;
                 return;
             }
         }
@@ -355,7 +355,12 @@ final class VBTKPlugin extends AbstractPicoPlugin
     public function onPageRendering(Twig_Environment &$twig, array &$twigVariables, &$templateName)
     {
         $query = $_GET['query'];
-        $sanitizedQuery = sanitize($query);
+        // $sanitizedQuery = sanitize($query);
+        $queryValues = explode(' ', trim($query));
+        foreach ($queryValues as &$value) {
+            $value = sanitize($value);
+        }
+
         $regex = '/\n\s*(?<number>[0-9]+)\.\s*\[(?<title>[^\]]+)\]\((?<link>[^\)]+)\)(?<content>((?!\n\s*[0-9]+\.).)+)?/si';
 
         $twig->addExtension(new Twig_Extension_Debug());
@@ -388,25 +393,84 @@ final class VBTKPlugin extends AbstractPicoPlugin
             $twigVariables['current_play'] = $play;
 
             // $templateName = 'play.twig';
+        } else if (in_array('md', $path)) {
+            $templateName = 'file.twig';
         } else if ($templateName == 'index.twig' && $query) {
           $templateName = 'search.twig';
 
           $twigVariables['query'] = htmlentities($query);
-          $twigVariables['results'] = [];
+          $results = [];
 
           foreach ($contentDir['files'] as $file) {
             $content = strtolower($file['name']);
+            $totalWeight = 0;
+            $matchWeights = array(
+                'name' => 1,
+                'content' => 1 / 6,
+                'searchContent' => 1 / 30
+            );
+            $matched = array();
 
-            if ($file['md']) {
-                // preg_match('/\{[^a-z]*(raw|search)-?content\:[^a-z0-9]+(.*)/si', file_get_contents($file['path']), $matches);
-                // $content .= strtolower($matches[2]);
-                $content .= sanitize(file_get_contents($file['mdpath']));
-            }
+            // if ($file['md']) {
+            //     preg_match('/\{[^a-z]*(raw|search)-?content\:[^a-z0-9]+(.*)/si', file_get_contents($file['path']), $matches);
+            //     $content .= strtolower($matches[2]);
+            //     $content .= sanitize(file_get_contents($file['mdpath']));
+            // }
 
-            if (stripos($content, $sanitizedQuery) !== false) {
-                array_push($twigVariables['results'], $file);
-            }
+                foreach ($queryValues as $value) {
+                    foreach ($matchWeights as $key => $weight) {
+                        $content = trim($file[$key]);
+
+                        if (!$content || empty($content)) {
+                            continue;
+                        }
+
+                        $content = sanitize(strtolower($content));
+
+                        $count = substr_count($content, $value);
+                        
+                        $matched[$key] = $count !== 0;
+
+                        if ($count === 0) {
+                            continue;
+                        }
+
+                        $totalWeight += ($weight * $count);
+                    }
+                  }
+
+
+                if ($totalWeight != 0) {
+                    array_push($results, array(
+                        'file' => $file,
+                        'weight' => $totalWeight,
+                        'matchedKeys' => $matched
+                    ));
+                }
           }
+
+          usort($results, function ($a, $b) {
+            if ($a['weight'] > $b['weight']) {
+                return -1;
+            } else if ($a['weight'] == $b['weight']) {
+                return 0;
+            } else {
+                return 1;
+            }
+          });
+
+          //     echo "<table>";
+          // foreach ($results as $result) {
+          //       echo "<tr>";
+          //       echo "<td>" . $result['file']['name'] . "</td><td>" . json_encode($result['matchedKeys']) . "</td><td>" . $result['weight'] . "</td>";
+          //       echo "</tr>";
+          //   }
+          //     echo "</table>";
+
+            $twigVariables['results'] = array_map(function ($result) {
+                return $result['file'];
+            }, $results);
+
         }
     }
 
@@ -424,6 +488,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
 }
 
 function sanitize($string) {
+    // return ' ' . preg_replace('/[^a-z0-9 ]/', '', preg_replace('/\s{2,}/', ' ', strtolower($string))) . ' ';
     return preg_replace('/[^a-z0-9]/', '', strtolower($string));
 }
 

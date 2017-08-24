@@ -22,7 +22,9 @@ var gulp = require('gulp'),
     babel = require('gulp-babel'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    googleWebFonts = require('gulp-google-webfonts');
+    googleWebFonts = require('gulp-google-webfonts'),
+    fs = require('fs'),
+    justIndent = require('just-indent');
 
  
 // COMPILE THEME SASS FILE
@@ -84,7 +86,35 @@ gulp.task('watch', function () {
     '**/*.php',
     '../../**/*.twig',
     '../../**/*.md',
-  ];
+  ], lastFile = null, lastFileTimeout = null;
+
+  // gulp.watch(['./**/*.php', '../../plugins/**/*.php']).on('change', function (event) {
+  //   if (event.path === lastFile) {
+  //     lastFile = null;
+  //     return;
+  //   }
+
+  //   console.log('Beautifing', event.path);
+
+  //   var content = fs.readFileSync(event.path).toString()
+  //                   .replace('/\t+/g', ' ').replace('/\r+/g', '').replace(/\n[ \t]+\n/g, '\n\n')
+  //                   .replace(/\t+/g,  ' ')
+  //                   .replace(/\ {2,}/g, ' '),
+  //       newContent = justIndent(content, '\t');
+        
+
+  //   if (content !== newContent) {
+  //     clearTimeout(lastFileTimeout);
+
+  //     lastFileTimeout = setTimeout(function () {
+  //       lastFile = null;
+  //     }, 250);
+
+  //     console.log('Saving', event.path);
+  //     lastFile = event.path;
+  //     fs.writeFile(event.path, newContent.trim());
+  //   }
+  // });
 
   browserSync.init(files, { proxy: proxy_url });
 
