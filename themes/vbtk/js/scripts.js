@@ -141,7 +141,7 @@ $(document).ready(function () {
   });
 
   function onSwipe(e, direction) {
-    console.log(direction)
+    console.log(direction);
     if (direction === 'left') {
       playbookNav.find('.selected').next().find('a').click();
     } else if (direction === 'right') {

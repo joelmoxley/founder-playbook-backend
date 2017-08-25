@@ -6,7 +6,7 @@
 
     .edit-icon {
       font-size: 1rem;
-      color: $light-blue;
+      color: $orange;
       float: right;
       display: block;
       padding: 1em;
@@ -19,12 +19,21 @@
 
   .play-intro {
     margin-top: 1em;
+
+    p {
+      font-family: MyriadPro-Regular;
+      font-size: 13px !important;
+      margin-left: 10px;
+      color: #382F2D;
+      line-height: 20px;
+    }
   }
 
   .play-footer {
     position: relative;
     margin-bottom: 2em;
     min-height: 3em;
+    padding: .5em .5em !important;
 
     .edit-icon {
       position: absolute;
@@ -39,14 +48,22 @@
 
   .play-content {
     color: $font-light;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
     position: relative;
     margin: 0;
     overflow: auto;
+    padding: 0;
+
+    h2 {
+      padding: 0 20px;
+      font-family: FuturaPT-Medium;
+      font-size: 25px;
+      color: #6B6560 !important;
+      line-height: 24px;
+      text-transform: none !important;
+    }
 
     a {
-      color: $light-blue;
+      color: $orange;
     }
 
     .edit-icon {
@@ -57,12 +74,20 @@
 
     ol {
       margin: 0;
-      padding: 0;
       counter-reset: item;
       margin-bottom: 2em;
 
       p {
         margin-bottom: 0.25em;
+        padding: 5px 0 0 !important;
+        font-family: MyriadPro-Regular !important;
+        font-size: 13px !important;
+        color: #382F2D;
+        line-height: 20px;
+      }
+
+      li {
+        padding: 15px 0 15px 20px;
       }
 
       li:nth-of-type(1n + 3):not(.show-more) {
@@ -72,6 +97,7 @@
       .filename {
         display: block;
         font-size: 1.2em;
+        margin-left: 28px;
 
         &:hover {
           text-decoration: underline;
@@ -80,7 +106,7 @@
         &:before {
           content: counter(item) " - ";
           counter-increment: item;
-          color: $light-blue;
+          color: $orange;
         }
       }
 
@@ -107,7 +133,6 @@
       li:not(.show-more) {
         display: block;
         position: relative;
-        padding: 1em 2em;
         border-bottom: 1px solid $whitest;
 
         &:before {
@@ -116,10 +141,9 @@
           display: block;
           position: absolute;
           left: 0;
-          height: 100%;
-          background-color: #FFF;
           padding-right: 1em;
-          color: $light-blue;
+          color: $orange;
+          margin-left: 20px;
         }
 
         &.pdf:before {
@@ -166,8 +190,6 @@
     padding: 1rem 0;
     list-style-type: none;
     text-align: center;
-    // max-height: 325px;
-    overflow: auto;
 
     li {
       display: inline-block;
@@ -195,6 +217,13 @@
       display: none !important;
     }
   }
+}
+
+.read-time {
+  font-family: MyriadPro-Regular;
+  font-size: 13px;
+  color: #7A7A7A;
+  line-height: 20px;
 }
 
 @include breakpoint(medium up) {

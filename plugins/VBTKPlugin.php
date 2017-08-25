@@ -382,7 +382,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
 
         $twigVariables['current_playbook'] = $playbook;
 
-        if (sizeof($path) === 2) {
+        // if (sizeof($path) === 2) {
             foreach ($playbook['plays'] as $play) {
                 if ($play['slug'] == $path[1]) {
                     break;
@@ -392,8 +392,23 @@ final class VBTKPlugin extends AbstractPicoPlugin
             $twigVariables['current_play'] = $play;
 
             // $templateName = 'play.twig';
-        } else if (in_array('md', $path)) {
-            $templateName = 'file.twig';
+        // }
+
+        if (in_array('md', $path)) {
+            $request_file = $this->getRequestFile();
+            foreach (array_values($twigVariables['current_play']['sections']) as $section) {
+                foreach ($section['files'] as $file) {
+                    if ($file['mdpath'] == $request_file) {
+                        break;
+                    }
+                }
+                if ($file['mdpath'] == $request_file) {
+                    break;
+                }
+            }
+
+          $twigVariables['file'] = $file;
+          $templateName = 'file.twig';
         } else if ($templateName == 'index.twig' && $query) {
           $templateName = 'search.twig';
 

@@ -1,5 +1,41 @@
 {% extends "_layout.twig" %}
 
 {% block content %}
-  {{ content }}
+
+	{% set url = file.url ? file.url : [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
+
+	<h1>{{file.name}}</h1>
+	<h2 class="edit-h2">Description <a title="Edit" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ path|url_encode }}?filename={{name}}&value={{ "This content will appear at the bottom of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
+	</a></h2>
+  
+  <div class="file-content">
+	  {{ content }}
+	</div>
+
+	<hr class="partial-divider">
+
+  <div class="single-time-credits">
+  	<span class="read-time"><strong>{{ file.duration|round(0, 'ceil') }}</strong> Min. Read</span>
+  	{% if meta["linkedin-1"] is not empty %}
+	  	<ul class="linkedin-credits">
+	  	{% for i in 1..5 %}
+			    {% set linkedin = meta["linkedin-" ~ i ] | split(',') %}
+			    <li><a href="{{linkedin[1]}}">{{linkedin[0]}}</a></li>
+			{% endfor %}
+			</ul>
+		{% endif%}
+  </div>
+
+  <hr class="partial-divider">
+
+  <a href="{{ url }}" class="filename">Download</a>
+
+	{% set edit = true ? 'edit' : 'new' %}
+	{% set name = file.mdpath|split('/')|last %}
+	{% set path = '/' ~ file.oldPath|split('/')|slice(0, -1)|join('/') ~ '/md/' ~ name %}
+
+	{% set name = file.mdpath|split('/')|last %}
+	{% set path = '/' ~ file.oldPath|split('/')|slice(0, -1)|join('/') ~ '/md/' ~ name %}
+	{% set edit = file.md ? 'edit' : 'new' %}
+
 {% endblock %}

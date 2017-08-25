@@ -1,4 +1,5 @@
 <?php
+exec('cd content && git add --all && git clean -f -d && git reset --hard HEAD && cd ..');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -60,10 +61,12 @@ function getFiles($dir, &$length, $pathStr) {
         'origName' => $value,
         'slug' => $slug,
         'md' => $mdexists,
+        'duration' => sizeof(explode(' ', $searchContent))/400,
         'content' => $content,
         'searchContent' => $searchContent,
         'fileURL' => '/' . $pathStr . '/' . $slug,
         'url' => '/' . $pathStr . '/md/' . $slug
+
       ]);
 
       if (strpos($value, '.webloc') !== false) {

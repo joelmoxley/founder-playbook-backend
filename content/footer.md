@@ -2,9 +2,9 @@
 
   # About the Founder's Playbook
 
-  The Founder's Playbook was developed by Cyclotron Road to be the go-to
-  knowledge repository for hard tech innovators and entrepreneurs. Cyclotron
-  Road, along with the community of educational partners and practitioners
+  The Founder's Playbook was developed by Cyclotron Road and Moxley Holdings
+  to be the go-to knowledge repository for hard tech innovators and entrepreneurs.
+  Cyclotron Road, along with the community of educational partners and practitioners
   below, will serve as a living laboratory for these resources, continually
   bulding upon and refining the content contained within based on their
   day-to-day engagement with leading hard tech innovators and entrepreneurs.
@@ -14,9 +14,6 @@
 <div markdown="1" class="columns medium-6 join-community">
 
   # Join the Community
-
-  <i class="fa fa-creative-commons"></i>
-  <a href="http://github.com"><i class="fa fa-github"></i></a>
 
   ###### Want to use the playbook?
 
@@ -48,14 +45,18 @@
 
   * ![Stanford](/img/stanford.png)
   * ![MIT](/img/mit-logo.png)
+  * ![California Energy Commission](/img/california-energy.png)
   * ![Breakthrough Energy](/img/breakthrough-energy.png)
   * ![Stanford](/img/stanford.png)
   * ![MIT](/img/mit-logo.png)
+  * ![California Energy Commission](/img/california-energy.png)
   * ![Breakthrough Energy](/img/breakthrough-energy.png)
   * ![Stanford](/img/stanford.png)
   * ![MIT](/img/mit-logo.png)
+  * ![California Energy Commission](/img/california-energy.png)
   * ![Breakthrough Energy](/img/breakthrough-energy.png)
   * ![Stanford](/img/stanford.png)
   * ![MIT](/img/mit-logo.png)
+  * ![California Energy Commission](/img/california-energy.png)
   * ![Breakthrough Energy](/img/breakthrough-energy.png)
 </div>

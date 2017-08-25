@@ -8,39 +8,56 @@
     {% else %}
       {{ current_play.name }}
     {% endif %}
-    
-    ({{ current_play.length }})
 
     {% set edit = current_play.hasIndex ? 'edit' : 'new' %}
     <a title="Edit header" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/index.md?filename=index.md&value={{ "---\ntemplate: play\n---\n\nThis content will appear at the top of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
     </a>
   </h1>
 
-  {% if content is not empty %}
-  <div class="columns play-intro play-content">
-    {{ content }}
-  </div>
-  {% endif %}
-
   {% set index = 0 %}
   {% for section in current_play.sections %}
       <div class="play-content columns">
         {% set index = index + 1 %}
         {% if section.name|length %}
-          <h2>{{ section.name }} ({{ section.length }})</h2>
+          <h2>{{ section.name }}</h2>
         {% endif %}
+
+        <div class="row">
+          {% if content is not empty %}
+            <div class="play-intro">
+              {{ content }}
+            </div>
+          {% endif %}
+        </div>
+
+        {# /finance/vc-pitch/01 - Content - Templates/md/01 - Cyclotron Road Pitch Deck Template 2017.pptx.md #}
 
         <ol class="{{ section.slug }}">
           {% for file in section.files %}
             {% set url = file.url ? file.url : [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
             <li>
                 <a href="{{ url }}.md" class="filename">{{ file.name }}</a>
+                <span class="read-time"><strong>{{ file.duration|round(0, 'ceil') }}</strong> Min. Read</span>
+
                 {% set name = file.mdpath|split('/')|last %}
                 {% set path = '/' ~ file.oldPath|split('/')|slice(0, -1)|join('/') ~ '/md/' ~ name %}
                 {% set edit = file.md ? 'edit' : 'new' %}
-                <a href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ path|url_encode }}/?filename={{ name|url_encode }}&value={{ pages['example']['raw_content']|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
-                </a>
                 {{ file.content|markdown }}
+
+                {% set newpath = file.url| slice(1) | split('/')|slice(0, -1)|join('/') ~ '/' ~ name %}
+                {% set newpath = newpath | replace({".md": ""}) %}
+                {% set filemeta = (pages[newpath]) %}
+
+                {% if filemeta.meta["linkedin-1"] is not empty %}
+                  <ul class="linkedin-credits">
+                  {% for i in 1..5 %}
+                      {% set linkedin = filemeta.meta["linkedin-" ~ i ] | split(',') %}
+                      <li><a href="{{linkedin[1]}}">{{linkedin[0]}}</a></li>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+
+                {# {{dump(filemeta.meta)}} #}
             </li>
           {% endfor %}
           {% if section.length > 2 %}
@@ -56,8 +73,8 @@
     {{ (current_play.path ~ '/footer')|content }}
 
     {% set edit = current_play.hasFooter ? 'edit' : 'new' %}
-    <a title="Edit footer" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/footer.md?filename=footer.md&value={{ "This content will appear at the bottom of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
-    </a>
+    {#     <a title="Edit footer" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/footer.md?filename=footer.md&value={{ "This content will appear at the bottom of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
+    </a> #}
   </div>
 
 </div>
