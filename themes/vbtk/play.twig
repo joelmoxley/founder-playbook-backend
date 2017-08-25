@@ -30,16 +30,34 @@
           {% endif %}
         </div>
 
+        {# /finance/vc-pitch/01 - Content - Templates/md/01 - Cyclotron Road Pitch Deck Template 2017.pptx.md #}
+
         <ol class="{{ section.slug }}">
           {% for file in section.files %}
             {% set url = file.url ? file.url : [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
             <li>
                 <a href="{{ url }}.md" class="filename">{{ file.name }}</a>
                 <span class="read-time"><strong>{{ file.duration|round(0, 'ceil') }}</strong> Min. Read</span>
+
                 {% set name = file.mdpath|split('/')|last %}
                 {% set path = '/' ~ file.oldPath|split('/')|slice(0, -1)|join('/') ~ '/md/' ~ name %}
                 {% set edit = file.md ? 'edit' : 'new' %}
                 {{ file.content|markdown }}
+
+                {% set newpath = file.url| slice(1) | split('/')|slice(0, -1)|join('/') ~ '/' ~ name %}
+                {% set newpath = newpath | replace({".md": ""}) %}
+                {% set filemeta = (pages[newpath]) %}
+
+                {% if filemeta.meta["linkedin-1"] is not empty %}
+                  <ul class="linkedin-credits">
+                  {% for i in 1..5 %}
+                      {% set linkedin = filemeta.meta["linkedin-" ~ i ] | split(',') %}
+                      <li><a href="{{linkedin[1]}}">{{linkedin[0]}}</a></li>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+
+                {# {{dump(filemeta.meta)}} #}
             </li>
           {% endfor %}
           {% if section.length > 2 %}

@@ -577,3 +577,133 @@ body {
     }
   }
 }
+
+.single-time-credits {
+  padding-left: 25px;
+}
+
+.file-content {
+  p {
+    font-family: MyriadPro-Regular !important;
+    font-size: 13px !important;
+    color: #382F2D;
+    line-height: 20px;
+    padding: 0 25px !important;
+  }
+}
+
+.edit-h2 {
+  text-transform: none !important;
+  padding-left: 25px;
+  font-family: FuturaPT-Medium;
+  font-size: 25px;
+  color: #6B6560 !important;
+  line-height: 24px;
+  margin-bottom: 15px;
+
+  a {
+    color: $orange;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+}
+
+.partial-divider {
+  width: 60px;
+  margin-left: 25px;
+}
+
+.read-time {
+  display: inline-block
+}
+
+
+.linkedin-credits {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: 0;
+
+  li {
+    display: inline-block;
+
+    a {
+      font-family: MyriadPro-Regular;
+      font-size: 13px;
+      color: #7A7A7A;
+      line-height: 20px;
+    }
+  }
+
+  &:before {
+    @extend .fa, .fa-linkedin;
+    border: #7A7A7A solid 1px;
+    border-radius: 200px;
+    padding: 5px 6px;
+    color: #7A7A7A;
+    font-size: 14px; 
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 7px;
+  }
+}
+
+.filename {
+  text-align: center;
+  padding-top: 7px;
+  display: block;
+  border: 1px solid $orange;
+  color: $orange;
+  font-family: FuturaPT-Medium;
+  font-size: 15px;
+  color: #F0940C;
+  line-height: 25px;
+  margin-left: 25px;
+  width: 140px;
+  height: 40px;
+  border-radius: 30px;
+}
+
+
+.home-popular-slider {
+  h1 {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    font-family: FuturaPT-Medium !important;
+    font-size: 25px !important;
+    color: #6B6560 !important;
+    line-height: 24px !important;
+  }
+
+  ul {
+    margin: 0;
+
+    li {
+      list-style-type: none;
+      margin: 0;
+
+      a {
+        color: $orange;
+        display: block;
+        font-size: 1.25em;
+        padding: .5rem;
+        border-bottom: 1px solid #e2e0de;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 2em;
+
+        &::after {
+          content: '\f054';
+          font-family: FontAwesome;
+          display: block;
+          position: absolute;
+          top: 50%;
+          right: 1em;
+          line-height: 1;
+          margin-top: -0.5em;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-<div markdown="1" class="columns small-12 medium-6 footer-about">
+<div markdown="1" class="columns medium-6 footer-about hide-for-small-only">
 
   # About the Founder's Playbook
 
@@ -11,7 +11,7 @@
 
 </div>
 
-<div markdown="1" class="columns small-12 medium-6 join-community">
+<div markdown="1" class="columns medium-6 join-community">
 
   # Join the Community
 
@@ -33,14 +33,14 @@
   # The Founder's Playbook Community
 </div>
 
-<div markdown="1" class="columns small-12 medium-6 partners">
+<div markdown="1" class="columns medium-6 partners">
   ###### Founding Partners & Playbook Curators
 
   * ![Cyclotron Road](/img/cyclotronroad.png)
   * ![MH](/img/mh.png)
 </div>
 
-<div markdown="1" class="columns small-12 medium-6 contributors">
+<div markdown="1" class="columns medium-6 contributors">
   ###### Contributing Partners
 
   * ![Stanford](/img/stanford.png)
