@@ -1,11 +1,16 @@
 .playbook {
   h1:first-of-type {
-    margin: 0;
+    margin: 0 !important; 
   }
+
+  padding-bottom: 10px;
 }
 
   .selected {
-    background-color: white;
+    background-color: #888888;
+    a {
+      color: $white !important;
+    }
   }
 
   .plays, .search-results {
@@ -16,7 +21,7 @@
       color: $orange;
       display: block;
       font-size: 1.25em;
-      padding: 0.5rem 0.5rem;
+      padding: .91rem 0.5rem !important;
       border-bottom: 1px solid $whitest;
       position: relative;
       white-space: nowrap;
@@ -38,6 +43,7 @@
         right: 1em;
         line-height: 1;
         margin-top: -0.5em;
+        font-size: 14px;
       }
 
       > div {
@@ -94,7 +100,7 @@
     background-color: $white;
 
     a {
-      color: $orange;
+      color: $orange !important;
       font-weight: 600;
     }
   }
@@ -103,7 +109,7 @@
 @include breakpoint (medium up) {
   .playbook-nav {
     right: -3.0em;
-    top: 2.5em;
+    top: 28px;
     font-family: Rajdhani-Semibold;
     font-size: 20px;
     color: #FFFFFF;
@@ -111,6 +117,8 @@
 
     a {
       padding: 0.73em;
+      height: 56px;
+      margin-bottom: 6px;
     }
   }
 }

@@ -1,6 +1,7 @@
 .play-row {
   h1 {
-    padding: 0.5rem 1rem;
+    margin-top: 5px;
+    padding-bottom: 20px !important;
     border-bottom: 1px solid $whitest;
     margin-bottom: 1rem;
 
@@ -11,6 +12,10 @@
       display: block;
       padding: 1em;
     }
+  }
+
+  h2 {
+    margin-bottom: 0 !important;
   }
 
   h2, h3, h4 {
@@ -98,6 +103,7 @@
         display: block;
         font-size: 1.2em;
         margin-left: 28px;
+        border: none !important;
 
         &:hover {
           text-decoration: underline;
@@ -108,6 +114,7 @@
           counter-increment: item;
           color: $orange;
         }
+
       }
 
       .show-more {
@@ -136,7 +143,7 @@
         border-bottom: 1px solid $whitest;
 
         &:before {
-          content: '\f15b';
+          content: '\f15c';
           font-family: FontAwesome;
           display: block;
           position: absolute;
@@ -195,8 +202,12 @@
       display: inline-block;
       max-width: 85px;
       vertical-align: top;
-      margin: 0.5em;
+      margin: 1em;
       line-height: 1;
+      font-family: MyriadPro-Regular;
+      font-size: 13px;
+      color: #382F2D;
+      line-height: 15px;
 
       > img {
         width: 50px;
@@ -232,6 +243,43 @@
       li {
         max-width: 150px;
       }
+    }
+  }
+}
+
+.content-templates {
+  .linkedin-credits {
+    display: inline-block !important;
+    list-style: none;
+    margin: 0;
+
+    li {
+      display: inline-block !important;
+      border: none !important;
+      padding: 0 !important;
+
+      &:before {
+        content: none !important;
+      }
+
+      a {
+        font-family: MyriadPro-Regular;
+        font-size: 13px;
+        color: #7A7A7A;
+        line-height: 20px;
+      }
+    }
+
+    &:before {
+      @extend .fa, .fa-linkedin;
+      border: #7A7A7A solid 1px;
+      border-radius: 200px;
+      padding: 5px 6px;
+      color: #7A7A7A;
+      font-size: 14px; 
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 7px;
     }
   }
 }

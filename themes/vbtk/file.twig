@@ -4,6 +4,12 @@
 
 	{% set url = file.url ? file.url : [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
 
+	<style>
+		.playbook-nav {
+			display: none;
+		}
+	</style>
+
 	<h1>{{file.name}}</h1>
 	<h2 class="edit-h2">Description <a title="Edit" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ path|url_encode }}?filename={{name}}&value={{ "This content will appear at the bottom of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
 	</a></h2>
@@ -28,7 +34,7 @@
 
   <hr class="partial-divider">
 
-  <a href="{{ url }}" class="filename">Download</a>
+  <a href="{{ url }}" class="download">Download</a>
 
 	{% set edit = true ? 'edit' : 'new' %}
 	{% set name = file.mdpath|split('/')|last %}
