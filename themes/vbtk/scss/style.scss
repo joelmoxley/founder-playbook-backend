@@ -50,6 +50,10 @@ $light-brown: #A39A94;
 @import "play.scss";
 @import "tree-view.scss";
 
+body, html { 
+  overflow-x:hidden;
+}
+
 body {
   background-color: $body-gray;
 }
@@ -57,7 +61,7 @@ body {
 #header {
   @include breakpoint (small only) {
     background-image: url('/themes/vbtk/images/barn_mobile.jpg');
-    background-size: contain;
+    background-size: cover;
     background-color: $nav-gray;
     padding-top: .25rem;
   }
