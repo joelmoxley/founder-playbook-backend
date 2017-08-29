@@ -28,9 +28,9 @@ $(document).ready(function () {
           });
       };
 
-  if (['/', '/index', '/tree'].indexOf(window.location.pathname) === -1) {
-    $('.footer-about, .join-community, #footer hr').hide();
-  }
+  // if (['/', '/index', '/tree'].indexOf(window.location.pathname) === -1) {
+  //   $('.footer-about, .join-community, #footer hr').hide();
+  // }
 
   loadFileExts();
 
@@ -127,6 +127,13 @@ $(document).ready(function () {
   //       }
   //     }]
   // });
+
+  $('.home-popular-slider').slick({
+    dots: true,
+    arrows: true,
+    prevArrow: '<i class="fa fa-chevron-left slick-prev"></a>',
+    nextArrow: '<i class="fa fa-chevron-right slick-next"></a>'
+  });
 
   $(".contributors ul").slick({
     infinite: true,

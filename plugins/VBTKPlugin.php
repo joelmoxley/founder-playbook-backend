@@ -384,11 +384,14 @@ final class VBTKPlugin extends AbstractPicoPlugin
         $twigVariables['current_playbook'] = $playbook;
 
         // if (sizeof($path) === 2) {
-        foreach ($playbook['plays'] as $play) {
-            if ($play['slug'] == $path[1]) {
-                break;
+            foreach ($playbook['plays'] as $play) {
+                if ($play['slug'] == $path[1]) {
+                    break;
+                } else {
+                    $play = null;
+                }
             }
-        }
+        // }
 
         $twigVariables['current_play'] = $play;
             // $templateName = 'play.twig';
