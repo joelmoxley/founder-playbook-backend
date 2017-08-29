@@ -172,6 +172,11 @@ $(document).ready(function () {
     preload(current.prev() || last);
     preload(current.next() || first);
   }
+
+  $('.dropdown-nav').hide();
+  $('.mobile-playbook-selector').on('click', function () {
+    $('.dropdown-nav').toggle();
+  });
 });
 
 window.onbeforeunload = function(e) {
