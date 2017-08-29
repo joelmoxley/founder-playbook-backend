@@ -1,4 +1,7 @@
 <?php
+
+exec('cd content && git add --all && git clean -f -d && git reset --hard HEAD && cd ..');
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -31,6 +34,8 @@ function getFiles($dir, &$length, $pathStr) {
       if ($mdexists) {
         // $path = $mdpath;
         // $value = $mdvalue;
+      } else {
+        touch($mdpath);
       }
 
       if ($mdexists) {

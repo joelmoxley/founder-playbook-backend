@@ -36,9 +36,9 @@
 
         <ol class="{{ section.slug }}">
           {% for file in section.files %}
-            {% set url = file.url ? file.url : [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
+            {% set url = [current_playbook.slug, current_play.slug, section.slug, file.slug]|join('/') %}
             <li>
-                <a href="{{ url }}.md" class="filename">{{ file.name }}</a>
+                <a href="/{{ url }}.md" class="filename">{{ file.name }}</a>
                 <span class="read-time"><strong>{{ file.duration|round(0, 'ceil') }}</strong> Min. Read</span>
 
                 {% set name = file.mdpath|split('/')|last %}
@@ -74,8 +74,8 @@
     {{ (current_play.path ~ '/footer')|content }}
 
     {% set edit = current_play.hasFooter ? 'edit' : 'new' %}
-    {#     <a title="Edit footer" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/footer.md?filename=footer.md&value={{ "This content will appear at the bottom of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
-    </a> #}
+        <a title="Edit footer" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/footer.md?filename=footer.md&value={{ "This content will appear at the bottom of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
+    </a>
   </div>
 
 </div>
