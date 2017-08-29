@@ -64,6 +64,8 @@ $(document).ready(function () {
       return;
     }
 
+    $('#content').addClass('loading');
+
     e.preventDefault();
     history.pushState({}, $(this).text(), href);
 
@@ -83,8 +85,8 @@ $(document).ready(function () {
       getAdjacentPlays();
       loadFileExts();
     } else {
+      parent.addClass('selected');
       content.load(href + '?ajax', function () {
-        parent.addClass('selected');
         getAdjacentPlays();
         loadFileExts();
       });
@@ -158,15 +160,33 @@ $(document).ready(function () {
 
   function getAdjacentPlays() {
     var current = $('.playbook-nav .selected'),
-        first = $('.playbook-nav li').first();
+        first = $('.playbook-nav li').first(),
+        last = $('.playbook-nav li').first();
 
     current.find('.content').html(content.html());
-    preload(current.prev() || first);
+
+    // if (first.find('a').attr('href') == window.location.pathname) {
+    //   first = null;
+    // }
+
+    preload(current.prev() || last);
     preload(current.next() || first);
   }
 });
 
+window.onbeforeunload = function(e) {
+  $('#content').addClass('loading');
+}
+
+$(document).ajaxComplete(function () {
+  $('#content').removeClass('loading');
+});
+
 function preload(item) {
+  if (!item) {
+    return;
+  }
+
   var content = item.find('.content'),
       html = content.html(),
       href;
