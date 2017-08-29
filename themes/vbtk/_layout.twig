@@ -14,6 +14,10 @@
 
     <link rel="stylesheet" href="{{ theme_url }}/build/css/style.css?{{ random()}}" type="text/css" />
     <script src="{{ theme_url }}/build/js/scripts.js?{{ random()}}"></script>
+
+	  <script src="https://use.typekit.net/vtn5kcq.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+  
 </head>
 <body {% if current_page.id == 'tree' %}id="tree-view"{% endif %}>
 
@@ -103,6 +107,7 @@
         </div>
         
     </div>
+
 </body>
 </html>
 {% endif %}

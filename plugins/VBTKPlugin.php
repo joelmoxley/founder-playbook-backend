@@ -396,7 +396,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
             // $templateName = 'play.twig';
         // }
 
-        if (in_array('md', $path)) {
+        if (strpos(end($path), '.md') !== false){
             $request_file = $this->getRequestFile();
             foreach (array_values($twigVariables['current_play']['sections']) as $section) {
                 foreach ($section['files'] as $file) {
