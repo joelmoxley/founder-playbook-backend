@@ -16,6 +16,14 @@
     </a>
   </h1>
 
+  <div class="row">
+    {% if content is not empty %}
+      <div class="play-intro">
+        {{ content }}
+      </div>
+    {% endif %}
+  </div>
+
   {% set index = 0 %}
   {% for section in current_play.sections %}
       <div class="play-content columns">
@@ -24,13 +32,7 @@
           <h2>{{ section.name }} ({{ section.length }})</h2>
         {% endif %}
 
-        <div class="row">
-          {% if content is not empty %}
-            <div class="play-intro">
-              {{ content }}
-            </div>
-          {% endif %}
-        </div>
+        
 
         {# /finance/vc-pitch/01 - Content - Templates/md/01 - Cyclotron Road Pitch Deck Template 2017.pptx.md #}
 
