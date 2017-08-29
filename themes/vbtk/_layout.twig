@@ -44,7 +44,7 @@
                     {% for playbook in playbooks%}
                         <li {% if playbook.slug == current_playbook.slug %} class="selected"{% endif %}>
                             <a href="/{{ playbook.slug }}">
-                                {{ playbook.name }}
+                                {{ playbook.name }} ({{ playbook.length }})
                             </a>
                         </li>
                     {% endfor %}
