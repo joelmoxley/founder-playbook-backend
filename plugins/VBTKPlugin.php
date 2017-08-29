@@ -403,10 +403,14 @@ final class VBTKPlugin extends AbstractPicoPlugin
                 foreach ($section['files'] as $file) {
                     if ($file['mdpath'] == $request_file) {
                         break;
+                    } else {
+                        $file = null;
                     }
                 }
                 if ($file['mdpath'] == $request_file) {
                     break;
+                } else {
+                    $file = null;
                 }
             }
 

@@ -35,7 +35,6 @@
   }
 
   .play-footer {
-    position: relative;
     margin-bottom: 2em;
     min-height: 3em;
     padding: .5em .5em !important;
@@ -53,9 +52,10 @@
 
   .play-content {
     color: $font-light;
-    position: relative;
     margin: 0;
     padding: 0;
+    position: relative;
+    overflow: auto;
 
     h2 {
       padding: 0 20px;

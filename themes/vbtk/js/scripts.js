@@ -3,6 +3,7 @@ window.jQuery = window.$ = require('jquery');
 require('jquery-touchswipe');
 
 require('slick-carousel/slick/slick.min.js');
+
 $(document).ready(function () {
   var container  = $('#container'),
       content = $('#content'),
@@ -22,7 +23,7 @@ $(document).ready(function () {
               return el.addClass('external');
             }
 
-            href.replace(/\.[a-z]{2,6}$/, function (m) {
+            href.replace(/\.md$/,'').replace(/\.[a-z]{2,6}$/, function (m) {
               el.addClass(m.substr(1, 3));
             });
           });
