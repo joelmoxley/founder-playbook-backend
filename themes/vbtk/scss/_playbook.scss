@@ -1,8 +1,11 @@
 .playbook {
+  @include breakpoint (small only){
+    padding-top: 30px;
+  }
+
   h1:first-of-type {
     margin: 0 !important; 
   }
-
   padding-bottom: 10px;
 }
 
@@ -67,7 +70,7 @@
 
 .playbook-nav {
   position: absolute;
-  right: -.75em;
+  right: -46px;
   top: 2em;
 
   a {
