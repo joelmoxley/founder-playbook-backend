@@ -386,6 +386,8 @@ final class VBTKPlugin extends AbstractPicoPlugin
             foreach ($playbook['plays'] as $play) {
                 if ($play['slug'] == $path[1]) {
                     break;
+                } else {
+                    $play = null;
                 }
             }
 

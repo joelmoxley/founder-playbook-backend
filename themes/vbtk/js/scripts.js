@@ -28,9 +28,9 @@ $(document).ready(function () {
           });
       };
 
-  if (['/', '/index', '/tree'].indexOf(window.location.pathname) === -1) {
-    $('.footer-about, .join-community, #footer hr').hide();
-  }
+  // if (['/', '/index', '/tree'].indexOf(window.location.pathname) === -1) {
+  //   $('.footer-about, .join-community, #footer hr').hide();
+  // }
 
   loadFileExts();
 

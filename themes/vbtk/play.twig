@@ -9,6 +9,8 @@
       {{ current_play.name }}
     {% endif %}
 
+    ({{ current_play.length }})
+
     {% set edit = current_play.hasIndex ? 'edit' : 'new' %}
     <a title="Edit header" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ current_play.oldPath|url_encode }}/index.md?filename=index.md&value={{ "---\ntemplate: play\n---\n\nThis content will appear at the top of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
     </a>
@@ -19,7 +21,7 @@
       <div class="play-content columns">
         {% set index = index + 1 %}
         {% if section.name|length %}
-          <h2>{{ section.name }}</h2>
+          <h2>{{ section.name }} ({{ section.length }})</h2>
         {% endif %}
 
         <div class="row">
@@ -57,7 +59,6 @@
 
                 {{ file.content|markdown }}
                 {# {{dump(filemeta.meta)}} #}
-                
             </li>
           {% endfor %}
           {% if section.length > 2 %}

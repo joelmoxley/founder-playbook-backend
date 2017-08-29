@@ -7,9 +7,9 @@
 }
 
   .selected {
-    background-color: #888888;
+    background-color: $white;
     a {
-      color: $white !important;
+      color: #3B444B !important;
     }
   }
 
@@ -57,6 +57,10 @@
     li {
       a {
         padding: 10px 30px;
+
+        &:hover {
+          color: white !important;
+        }
       }
     }
   }
