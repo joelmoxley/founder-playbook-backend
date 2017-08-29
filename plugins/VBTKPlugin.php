@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL ^ E_WARNING);
+ini_set('display_errors', 0);
 /**
  * Pico dummy plugin - a template for plugins
  *
@@ -367,7 +368,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
         $twigVariables['ajax'] = isset($_GET['ajax']);
 
         $path = array_filter(explode('/', strtok($_SERVER['QUERY_STRING'], '&')));
-        $current_playbook = $playbooks[$current_playbook];
+        // $current_playbook = $playbooks[$current_playbook];
         $contentDir = unserialize(file_get_contents('./content.txt'));
         $playbooks = $contentDir['playbooks'];
         $twigVariables['playbooks'] = $playbooks;
@@ -383,14 +384,13 @@ final class VBTKPlugin extends AbstractPicoPlugin
         $twigVariables['current_playbook'] = $playbook;
 
         // if (sizeof($path) === 2) {
-            foreach ($playbook['plays'] as $play) {
-                if ($play['slug'] == $path[1]) {
-                    break;
-                }
+        foreach ($playbook['plays'] as $play) {
+            if ($play['slug'] == $path[1]) {
+                break;
             }
+        }
 
-            $twigVariables['current_play'] = $play;
-
+        $twigVariables['current_play'] = $play;
             // $templateName = 'play.twig';
         // }
 
