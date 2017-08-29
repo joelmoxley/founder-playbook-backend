@@ -270,6 +270,21 @@ body {
     padding-right: 0;
   }
 
+
+  &.loading {
+    &:before {
+      color: $orange;
+      @extend .fa, .fa-circle-o-notch, .fa-spin;
+      text-align: center;
+      display: block;
+      margin-top: 3rem;
+      font-size: 4rem;
+    }
+
+    > * {
+      visibility: hidden;
+    }
+  }
 }
 
 
