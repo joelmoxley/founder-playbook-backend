@@ -64,8 +64,6 @@ $(document).ready(function () {
       return;
     }
 
-    $('#content').addClass('loading');
-
     e.preventDefault();
     history.pushState({}, $(this).text(), href);
 
@@ -85,6 +83,7 @@ $(document).ready(function () {
       getAdjacentPlays();
       loadFileExts();
     } else {
+      $('#content').addClass('loading');
       parent.addClass('selected');
       content.load(href + '?ajax', function () {
         getAdjacentPlays();
