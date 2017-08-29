@@ -44,7 +44,24 @@
 
         <nav>
             <div class="row">
-                <ul name="playbook">
+              <div class="show-for-small-only">
+                <div class="mobile-playbook-selector">
+                  <p class="mobile-selector-current">&nbsp; {{ current_playbook.name }}</p>
+                  <p class="mobile-selector-select">Select a Playbook</p>
+                </div>
+              </div>
+
+                <ul name="playbook" class="dropdown-nav show-for-small-only">
+                    {% for playbook in playbooks%}
+                        <li {% if playbook.slug == current_playbook.slug %} class="selected"{% endif %}>
+                            <a href="/{{ playbook.slug }}">
+                                {{ playbook.name }} ({{ playbook.length }})
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <ul name="playbook" class="show-for-medium">
                     {% for playbook in playbooks%}
                         <li {% if playbook.slug == current_playbook.slug %} class="selected"{% endif %}>
                             <a href="/{{ playbook.slug }}">

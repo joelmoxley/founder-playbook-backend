@@ -215,8 +215,8 @@ body {
 
 
 #container {
-  margin: 3.5em 1em 3em 1em;
-  padding: 2em 5m;
+  margin: 0 45px 3em 1em;
+  padding: 0 10px 20px;;
   padding-right: 0.75em;
   background-color: #FFF;
   position: relative;
@@ -227,6 +227,7 @@ body {
 
   @include breakpoint (medium up) {
     padding: 2em 4.5em 2em 3.75em;
+    margin: 3.5em 1em 3em 1em;
   }
 
   h1,h2,h3,h4,h5,h6 {
