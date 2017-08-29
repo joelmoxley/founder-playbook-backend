@@ -5,9 +5,10 @@
     <h1>{{results|length}} results for "{{query}}"</h1>
     <ul class="search-results">
     {% for result in results %}
+      {# {{ dump(result) }} #}
+      {% set url = [current_playbook.slug, current_play.slug, section.slug, result.slug]|join('/') %}
       <li>
-
-      <a href="{{ result.url }}">
+      <a href="{{ result.fileURL ~ '.md' }}">
         {{ result.name }}
         <div>
           {% if result.url starts with 'http' %}

@@ -176,7 +176,7 @@ $(document).ready(function () {
 
 window.onbeforeunload = function(e) {
   $('#content').addClass('loading');
-}
+};
 
 $(document).ajaxComplete(function () {
   $('#content').removeClass('loading');
