@@ -3,6 +3,7 @@ window.jQuery = window.$ = require('jquery');
 require('jquery-touchswipe');
 
 require('slick-carousel/slick/slick.min.js');
+
 $(document).ready(function () {
   var container  = $('#container'),
       content = $('#content'),
@@ -22,7 +23,7 @@ $(document).ready(function () {
               return el.addClass('external');
             }
 
-            href.replace(/\.[a-z]{2,6}$/, function (m) {
+            href.replace(/\.md$/,'').replace(/\.[a-z]{2,6}$/, function (m) {
               el.addClass(m.substr(1, 3));
             });
           });
@@ -128,7 +129,6 @@ $(document).ready(function () {
   // });
 
   $('.home-popular-slider').slick({
-    dots: true,
     arrows: true,
     prevArrow: '<i class="fa fa-chevron-left slick-prev"></a>',
     nextArrow: '<i class="fa fa-chevron-right slick-next"></a>'
@@ -175,6 +175,10 @@ $(document).ready(function () {
   $('.dropdown-nav').hide();
   $('.mobile-playbook-selector').on('click', function () {
     $('.dropdown-nav').toggle();
+  });
+
+  $('.dropdown-nav').on('click', function () {
+    $('.dropdown-nav').hide();
   });
 });
 

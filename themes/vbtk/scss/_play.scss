@@ -4,6 +4,12 @@
     padding-bottom: 20px !important;
     border-bottom: 1px solid $whitest;
     margin-bottom: 1rem;
+    position: relative;
+
+    @include breakpoint (small only){
+      font-size: 20px !important;
+      padding-right: 10px !important;
+    }
 
     .edit-icon {
       font-size: 1rem;
@@ -11,6 +17,14 @@
       float: right;
       display: block;
       padding: 1em;
+
+      @include breakpoint (small only){
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-top: -10px;
+        margin-left: -30px;
+      }
     }
   }
 
@@ -35,10 +49,11 @@
   }
 
   .play-footer {
-    position: relative;
     margin-bottom: 2em;
     min-height: 3em;
     padding: .5em .5em !important;
+    position: relative;
+    overflow: auto;
 
     .edit-icon {
       position: absolute;
@@ -52,11 +67,12 @@
   }
 
   .play-content {
+    padding-top: 20px !important;
     color: $font-light;
-    position: relative;
     margin: 0;
-    overflow: auto;
     padding: 0;
+    position: relative;
+    overflow: auto;
 
     h2 {
       padding: 0 20px;

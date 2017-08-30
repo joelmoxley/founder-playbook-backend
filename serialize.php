@@ -1,4 +1,7 @@
 <?php
+
+exec('cd content && git add --all && git clean -f -d && git reset --hard HEAD && cd ..');
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -31,6 +34,8 @@ function getFiles($dir, &$length, $pathStr) {
       if ($mdexists) {
         // $path = $mdpath;
         // $value = $mdvalue;
+      } else {
+        touch($mdpath);
       }
 
       if ($mdexists) {
@@ -39,17 +44,17 @@ function getFiles($dir, &$length, $pathStr) {
         $mdcontent = '';
       }
 
-      preg_match_all('/(.*)\{[^a-z]*(raw|search)-?content\:[^a-z]*\}(.*)/si', $mdcontent, $matches, PREG_PATTERN_ORDER);
+      preg_match_all('/(---.*---)?(.*)\{[^a-z]*(raw|search)-?content\:[^a-z]*\}(.*)/si', $mdcontent, $matches, PREG_PATTERN_ORDER);
 
       $content = '';
       $searchContent = '';
 
-      if ($matches[1]) {
-        $content = implode('', $matches[1]);
+      if ($matches[2]) {
+        $content = implode('', $matches[2]);
       }
 
-      if ($matches[3]) {
-        $searchContent = implode('', $matches[3]);
+      if ($matches[4]) {
+        $searchContent = implode('', $matches[4]);
       }
 
       array_push($farray, [

@@ -10,9 +10,9 @@
 }
 
   .selected {
-    background-color: $white;
+    background-color: #888888;
     a {
-      color: #3B444B !important;
+      color: $white !important;
     }
   }
 
@@ -33,7 +33,7 @@
       padding-right: 2em;
 
       &:active, &:hover {
-        color: $white;
+        color: $white !important;
         background-color: $orange;
       }
       
@@ -49,6 +49,10 @@
         font-size: 14px;
       }
 
+      @include breakpoint (small only){
+        padding: .57rem 0.5rem !important;
+      }
+
       > div {
         font-size: 1rem;
         color: $font-light;
@@ -60,6 +64,10 @@
     li {
       a {
         padding: 10px 30px;
+        @include breakpoint (small only) {
+          font-size: 17px;
+          padding-right: 35px !important;
+        }
 
         &:hover {
           color: white !important;
@@ -71,7 +79,8 @@
 .playbook-nav {
   position: absolute;
   right: -46px;
-  top: 2em;
+  top: 1em !important;
+  font-family: 'rajdhanisemibold';
 
   a {
     color: $white;
@@ -103,6 +112,16 @@
     }
   }
 
+  @include breakpoint (small only){
+    right: -33px;
+    margin-top: 10px;
+    font-size: 15px;
+
+    a {
+      padding: 0.73em 0.25em;
+    }
+  }
+
   .selected {
     background-color: $white;
 
@@ -117,7 +136,7 @@
   .playbook-nav {
     right: -3.0em;
     top: 28px;
-    font-family: Rajdhani-Semibold;
+    font-family: 'rajdhanisemibold';
     font-size: 20px;
     color: #FFFFFF;
     line-height: 24px;
