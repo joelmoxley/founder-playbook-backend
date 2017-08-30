@@ -64,8 +64,10 @@
     li {
       a {
         padding: 10px 30px;
-        font-size: 17px;
-        padding-right: 35px !important;
+        @include breakpoint (small only) {
+          font-size: 17px;
+          padding-right: 35px !important;
+        }
 
         &:hover {
           color: white !important;
