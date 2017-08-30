@@ -6,3 +6,4 @@ bower_components/
 npm-debug.log
 content.txt
 build/
+themes/vbtk/build
