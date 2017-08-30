@@ -4,6 +4,12 @@
     padding-bottom: 20px !important;
     border-bottom: 1px solid $whitest;
     margin-bottom: 1rem;
+    position: relative;
+
+    @include breakpoint (small only){
+      font-size: 20px !important;
+      padding-right: 10px !important;
+    }
 
     .edit-icon {
       font-size: 1rem;
@@ -11,6 +17,14 @@
       float: right;
       display: block;
       padding: 1em;
+
+      @include breakpoint (small only){
+        position: absolute;
+        top: 0;
+        left: 100%;
+        margin-top: -10px;
+        margin-left: -30px;
+      }
     }
   }
 
