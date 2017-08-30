@@ -71,7 +71,7 @@
 .playbook-nav {
   position: absolute;
   right: -46px;
-  top: 2em;
+  top: 1em !important;
   font-family: 'rajdhanisemibold';
 
   a {
@@ -105,7 +105,8 @@
   }
 
   @include breakpoint (small only){
-    right: -30px;
+    right: -35px;
+    top: 2em;
     font-size: 15px;
 
     a {
