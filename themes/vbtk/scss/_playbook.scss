@@ -49,6 +49,10 @@
         font-size: 14px;
       }
 
+      @include breakpoint (small){
+        padding: .57rem 0.5rem !important;
+      }
+
       > div {
         font-size: 1rem;
         color: $font-light;
@@ -106,7 +110,7 @@
 
   @include breakpoint (small only){
     right: -33px;
-    top: 2em;
+    margin-top: 10px;
     font-size: 15px;
 
     a {
