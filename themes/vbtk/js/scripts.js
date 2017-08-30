@@ -1,3 +1,5 @@
+var currentContentXHR = null;
+
 window.jQuery = window.$ = require('jquery');
 
 require('jquery-touchswipe');
@@ -86,9 +88,17 @@ $(document).ready(function () {
     } else {
       $('#content').addClass('loading');
       parent.addClass('selected');
-      content.load(href + '?ajax', function () {
-        getAdjacentPlays();
-        loadFileExts();
+
+      if (currentContentXHR !== null) {
+        currentContentXHR.abort();
+      }
+
+      currentContentXHR = $.ajax(href + '?ajax', {
+        success: function (data) {
+          content.html(data);
+          getAdjacentPlays();
+          loadFileExts();
+        }
       });
     }
   });
