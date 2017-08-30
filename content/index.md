@@ -14,7 +14,7 @@ Title: Founder Playbook
 
 # Most Popular Resources
 
-* [Corporate Parnerships - Proposal](#)
+* [Cyclotron Road - Elevator Pitch - Template](/foundational/eoe-elevator-pitch/cyclotron-road-elevator-pitch-template.pptx.md)
 Caption One
 * [Equity v Debt v Revenue](#)
 Caption Two

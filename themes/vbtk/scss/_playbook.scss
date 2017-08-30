@@ -104,6 +104,15 @@
     }
   }
 
+  @include breakpoint (small only){
+    right: -30px;
+    font-size: 15px;
+
+    a {
+      padding: 0.73em 0.25em;
+    }
+  }
+
   .selected {
     background-color: $white;
 
