@@ -10,9 +10,9 @@
 }
 
   .selected {
-    background-color: $white;
+    background-color: #888888;
     a {
-      color: #3B444B !important;
+      color: $white !important;
     }
   }
 
@@ -33,7 +33,7 @@
       padding-right: 2em;
 
       &:active, &:hover {
-        color: $white;
+        color: $white !important;
         background-color: $orange;
       }
       
@@ -72,6 +72,7 @@
   position: absolute;
   right: -46px;
   top: 2em;
+  font-family: 'rajdhanisemibold';
 
   a {
     color: $white;
@@ -117,7 +118,7 @@
   .playbook-nav {
     right: -3.0em;
     top: 28px;
-    font-family: Rajdhani-Semibold;
+    font-family: 'rajdhanisemibold';
     font-size: 20px;
     color: #FFFFFF;
     line-height: 24px;

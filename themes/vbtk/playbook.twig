@@ -1,17 +1,17 @@
 {% extends "_layout.twig" %}
 
 {% block content %}
-<div class="column playbook">
-	<h1>{{ current_playbook.name }}: Table of Contents</h1>
+    <div class="column playbook">
+    	<h1>Table of Contents</h1>
 
-	<ol class="plays">
-        {% for play in current_playbook.plays %}
-            <li>
-            	<a href="/{{ current_playbook.slug }}/{{ play.slug }}">
-                    {{ play.name }} ({{ play.length }})
-                </a>
-            </li>
-        {% endfor %}
-	</ol>
-</div>
+    	<ol class="plays">
+            {% for play in current_playbook.plays %}
+                <li>
+                	<a href="/{{ current_playbook.slug }}/{{ play.slug }}">
+                        {{ play.name }} ({{ play.length }})
+                    </a>
+                </li>
+            {% endfor %}
+    	</ol>
+    </div>
 {% endblock %}

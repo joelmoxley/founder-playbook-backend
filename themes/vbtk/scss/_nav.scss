@@ -16,8 +16,7 @@ nav {
     background-color: #4C4C4C;
     border: 2px solid #382F2D;
     color: $white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
     padding: 10px 20px;
     font-family: "futura-pt";
     font-weight: 300;
@@ -86,6 +85,7 @@ nav {
           font-weight: lighter;
           padding: 0 !important;
           z-idex: 999 !important;
+          cursor: pointer !important;
         }
       }
 
