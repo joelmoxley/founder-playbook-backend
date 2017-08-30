@@ -8,7 +8,6 @@ CSS file.
 
 ******************************************************************/
 
-
 // Import custom mixins
 @import "mixins";
 
@@ -254,7 +253,7 @@ body {
       padding: 0 0 20px;
     }
 
-    padding: 0 1.7rem 0 10px;
+    padding: 0 1.7rem 0 15px;
     border-bottom: 1px solid $whitest;
     margin-bottom: 0;
   }
@@ -279,6 +278,10 @@ body {
 
   a {
     color: $orange;
+    @include breakpoint (small only){
+      padding-right: 50px !important;
+      font-size: 17px;
+    }
   }
 
   plays {
@@ -390,7 +393,7 @@ body {
     }
   }
 
-  .partners, .contributors {
+  .partners, .cyclopartners {
     h6 {
       font-size: 12px;
       color: #6B6560;
@@ -400,13 +403,36 @@ body {
     }
   }
 
+  .cyclopartners {
+    @include breakpoint (small only) {
+      margin-bottom: 20px;
+    }
+
+    ul {
+      background-color: #c4c4c4;
+      padding: 35px 40px;
+
+      li {
+        width: 45%;
+      }
+    }
+
+    img {
+      display: inline-block;
+      margin: 0 auto;
+      vertical-align: middle;
+      max-height: 60px;
+      height: auto;
+    }
+  }
+
+
   .partners {
     @include breakpoint (small only) {
       margin-bottom: 20px;
     }
 
     ul {
-      border: solid $white 3px;
       padding: 35px 40px;
 
       li {
@@ -693,7 +719,7 @@ body {
 }
 
 .single-time-credits {
-  padding-left: 25px;
+  padding-left: 10px;
 }
 
 .file-content {
@@ -702,13 +728,14 @@ body {
     font-size: 13px !important;
     color: #382F2D;
     line-height: 20px;
-    padding: 0 25px !important;
+    padding: 0 10px !important;
   }
 }
 
 .edit-h2 {
   text-transform: none !important;
-  padding-left: 25px;
+  margin-top: 20px;
+  padding-left: 10px;
   font-family: "futura-pt";
   font-weight: 500;
   font-size: 25px;
@@ -725,7 +752,7 @@ body {
 
 .partial-divider {
   width: 60px;
-  margin-left: 25px;
+  margin-left: 10px;
 }
 
 .read-time {
@@ -773,7 +800,7 @@ body {
   font-size: 15px;
   color: #F0940C;
   line-height: 25px;
-  margin-left: 25px;
+  margin-left: 10px;
   width: 140px;
   height: 40px;
   border-radius: 30px;
