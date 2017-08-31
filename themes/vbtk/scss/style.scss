@@ -391,8 +391,9 @@ body {
     }
   }
 
-  .partners, .cyclopartners {
+  .partners, .cyclopartners, .contributors {
     h6 {
+      padding-top: 10px;
       font-size: 12px;
       color: #6B6560;
       line-height: 13px;
@@ -999,5 +1000,17 @@ body {
 
   img {
     max-height: 100px;
+  }
+}
+
+.contributors {
+  position: relative;
+  border: 3px solid $white;
+  margin-bottom: 10px;
+
+  ul {
+    li {
+      width: 115px; 
+    }
   }
 }
