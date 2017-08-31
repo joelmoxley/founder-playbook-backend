@@ -431,6 +431,9 @@ body {
       margin-bottom: 20px;
     }
 
+    border: 3px solid $white;
+  margin-bottom: 10px;
+
     ul {
       padding: 35px 40px;
 
@@ -1005,8 +1008,7 @@ body {
 
 .contributors {
   position: relative;
-  border: 3px solid $white;
-  margin-bottom: 10px;
+
 
   ul {
     li {
