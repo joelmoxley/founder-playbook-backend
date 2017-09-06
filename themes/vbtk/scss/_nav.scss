@@ -1,126 +1,64 @@
 nav {
-  font-size: 1em;
+  font-size: 15px;
   font-weight: 600;
-  color: $orange;
   background-color: $nav-gray;
 
-  @include breakpoint (small only){
-    background-color: $body-gray !important;
-  }
-
-  .mobile-playbook-selector {
-    width: 80% !important;
-    display: block !important;
-    margin: 25px auto 0 !important;
-    text-transform: uppercase;
-    background-color: #4C4C4C;
-    border: 2px solid #382F2D;
-    color: $white;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-family: "futura-pt";
-    font-weight: 300;
-
-    p {
-      margin-bottom: 0;
-    }
-
-    .mobile-selector-current {
-      font-size: 14px;
-    }
-
-    .mobile-selector-select {
-      margin-top: 5px;
-      font-size: 20px;
-      font-weight: bold;
-
-      &::after {
-          content: '\f054';
-          font-family: FontAwesome;
-          display: inline-block;
-          margin-left: 15px;
-          font-size: 15px; 
-        }
-    }
+  a:hover {
+    color: #000 !important;
   }
 
   ul {
-    
+    margin: 0;
     list-style-type: none;
     padding-top: 1em;
-    margin-bottom: 0;
 
     @include breakpoint (small only) {
-      position: absolute;
-      top: 0;
-      z-index: 999 !important;
-      background-color: none;
-      font-size: 20px;
-      color: #969696;
-      letter-spacing: 0.77px;
-      line-height: 43px;
-      display: block;
-      margin: 108px auto 0;
-      width: 100%;
-      padding-top: 0 !important;
-      height: 175px !important;
-
-      li {
-        width: 70% !important;
-        display: block !important;
-        margin: 0 auto !important;
-        text-transform: uppercase;
-        z-idex: 999 !important;
-        -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
-        -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
-        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
-
-        a {
-          color: #969696 !important;
-          font-family: "futura-pt";
-          font-weight: 300;
-          font-size: 20px;
-          letter-spacing: 0.77px;
-          line-height: 43px;
-          font-weight: lighter;
-          padding: 0 !important;
-          z-idex: 999 !important;
-          cursor: pointer !important;
-        }
-      }
-
-
+      text-align: center;
+      background-color: #ddd;
 
       .selected {
-        background-color: $orange;
+        width: 95%;
+        background-color: #888;
 
         a {
           color: $white !important;
-          font-family: "futura-pt";
-          font-weight: 300;
-          font-size: 20px;
-          letter-spacing: 0.77px;
-          line-height: 43px;
-          font-weight: lighter;
+
+          :hover {
+            color: $white !important;
+          }
         }
       }
+    }
+
+    &:before {
+      content: 'Select a Playbook';
+      display: block;
+      text-align: center;
+      color: $white;
+      text-transform: uppercase;
+      line-height: 2;
     }
 
     a {
       margin: 0 1em;
       display: block;
       padding: 0.75em 1.25em;
+      text-transform: uppercase;
+      border-left: 1em double $white;
+      border-right: 1em double $white;
     }
 
     li {
-      padding: 0;
+      margin: 0;
       display: inline-block;
+      width: 100%;
       line-height: 1;
       vertical-align: middle;
       margin-bottom: 1px;
-      background-color: $white;
+      background-color: #c4c4c4;
+      border-radius: 5px;
       margin: 0 auto;
-      width: 275px;
+      width: 90%;
       margin-bottom: 1px;
       white-space: nowrap;
     }
@@ -141,19 +79,12 @@ nav {
 
       a {
         margin: 0;
-        padding: 0.65em 1.25em;
+        padding: 0.5em 1.25em;
         border: none;
-        color: #382F2D !important;
-        font-family: "futura-pt",sans-serif;
-        font-style: normal;
-        font-weight: 600 !important;
-        font-size: 15px; 
-        letter-spacing: 0;
-        line-height: 24px;
-        text-transform: uppercase;
       }
 
       li {
+        padding: 10px 0 !important;
         width: auto;
         background: none;
         background-color: $nav-gray;
@@ -165,16 +96,19 @@ nav {
           background-color: rgba($white, 0.45);
         }
 
-        .selected {
-          background-color: $white;
-        }
-      }
-    }
 
-    .playbook {
-      .selected {
-        background-color: white !important;
       }
     }
+  }
+}
+
+.cyclotron-logo {
+  @include breakpoint (small only){
+    max-width: 175px;
+    margin-top: 15px;
+  }
+
+  @include breakpoint (medium up) {
+    max-width: 25%;
   }
 }
