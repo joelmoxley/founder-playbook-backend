@@ -24,6 +24,7 @@
     {% spaceless %}
     <header id="header">
         <div class="row column">
+            <img src="/themes/vbtk/images/cyclotron.png" class="cyclotron-logo">
             <h1><a href="{{ "index"|link }}" id="logo">{{ site_title }}</a></h1>
 
             <div class="view-mode">
@@ -44,24 +45,7 @@
 
         <nav>
             <div class="row">
-              <div class="show-for-small-only">
-                <div class="mobile-playbook-selector">
-                  <p class="mobile-selector-current">&nbsp; {{ current_playbook.name }}</p>
-                  <p class="mobile-selector-select">Select a Playbook</p>
-                </div>
-              </div>
-
-                <ul name="playbook" class="dropdown-nav show-for-small-only">
-                    {% for playbook in playbooks%}
-                        <li {% if playbook.slug == current_playbook.slug %} class="selected"{% endif %}>
-                            <a href="/{{ playbook.slug }}">
-                                {{ playbook.name }} ({{ playbook.length }})
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                <ul name="playbook" class="show-for-medium">
+                <ul name="playbook">
                     {% for playbook in playbooks%}
                         <li {% if playbook.slug == current_playbook.slug %} class="selected"{% endif %}>
                             <a href="/{{ playbook.slug }}">
