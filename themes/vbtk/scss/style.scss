@@ -91,6 +91,10 @@ body {
 
     a {
       color: $white;
+      margin: 0;
+
+    @include breakpoint (small only){
+      font-size: 24px;}
     }
   }
 
@@ -646,7 +650,7 @@ body {
   #header {
     form {
       float: right;
-      margin-top: -1.5em;
+      margin-top: -3.5em;
     }
 
     h1 {
