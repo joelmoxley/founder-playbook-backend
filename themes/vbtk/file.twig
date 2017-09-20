@@ -15,7 +15,7 @@
 	{% set edit = file.md ? 'edit' : 'new' %}
 
 	<h1>{{file.name}}</h1>
-	<h2 class="edit-h2">Description <a title="Edit" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ path|url_encode }}?filename={{name}}&value={{ "This content will appear at the bottom of the page"|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
+	<h2 class="edit-h2">Description <a title="Edit" href="{{ config.git.url }}/{{ edit }}/{{ config.git.branch }}/{{ path|url_encode }}?filename={{name}}&value={{ exampleContent|url_encode }}" target="_blank" class="edit-icon fa fa-pencil">
 	</a></h2>
   
   <div class="file-content">

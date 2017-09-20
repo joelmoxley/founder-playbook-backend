@@ -361,6 +361,8 @@ final class VBTKPlugin extends AbstractPicoPlugin
             $value = sanitize($value);
         }
 
+        $twigVariables['exampleContent'] = file_get_contents('./content/example.md');
+
         $regex = '/\n\s*(?<number>[0-9]+)\.\s*\[(?<title>[^\]]+)\]\((?<link>[^\)]+)\)(?<content>((?!\n\s*[0-9]+\.).)+)?/si';
 
         $twig->addExtension(new Twig_Extension_Debug());
@@ -413,7 +415,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
                     $file = null;
                 }
             }
-            
+
           $twigVariables['file'] = $file;
           $templateName = 'file.twig';
         } else if ($templateName == 'index.twig' && $query) {
