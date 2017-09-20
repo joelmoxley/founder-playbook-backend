@@ -44,7 +44,7 @@ function getFiles($dir, &$length, $pathStr) {
         $mdcontent = '';
       }
 
-      preg_match_all('/(---.*---)?(.*)\{[^a-z]*(raw|search)-?content\:[^a-z]*\}(.*)/si', $mdcontent, $matches, PREG_PATTERN_ORDER);
+      preg_match_all('/(---.*---)?(.*)\{[^a-z]*((raw|search)-?content\:[^a-z]*\}(.*))?/si', $mdcontent, $matches, PREG_PATTERN_ORDER);
 
       $content = '';
       $searchContent = '';
@@ -53,8 +53,8 @@ function getFiles($dir, &$length, $pathStr) {
         $content = implode('', $matches[2]);
       }
 
-      if ($matches[4]) {
-        $searchContent = implode('', $matches[4]);
+      if ($matches[5]) {
+        $searchContent = implode('', $matches[5]);
       }
 
       array_push($farray, [
