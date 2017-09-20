@@ -44,7 +44,7 @@ function getFiles($dir, &$length, $pathStr) {
         $mdcontent = '';
       }
 
-      preg_match_all('/(---.*---)?(.*)(\{[^a-z]*(raw|search)-?content\:[^a-z]*\}(.*))?/si', $mdcontent, $matches, PREG_PATTERN_ORDER);
+      preg_match_all('/(---.*---)?(.*)\{[^a-z]*(raw|search)-?content\:[^a-z]*\}(.*)/si', $mdcontent, $matches, PREG_PATTERN_ORDER);
 
       $content = '';
       $searchContent = '';
@@ -53,8 +53,12 @@ function getFiles($dir, &$length, $pathStr) {
         $content = implode('', $matches[2]);
       }
 
-      if ($matches[5]) {
-        $searchContent = implode('', $matches[5]);
+      if ($matches[4]) {
+        $searchContent = implode('', $matches[4]);
+      }
+
+      if (!$content && !$searchContent) {
+        $content = $mdcontent;
       }
 
       array_push($farray, [
@@ -72,7 +76,7 @@ function getFiles($dir, &$length, $pathStr) {
         'url' => '/' . $pathStr . '/md/' . $slug
 
       ]);
-      
+
       if (strpos($value, '.webloc') !== false) {
         preg_match('/<string>(https?:[^\<]+)/i', file_get_contents($path), $matches);
         $farray[sizeof($farray) - 1]['url'] = $matches[1];
