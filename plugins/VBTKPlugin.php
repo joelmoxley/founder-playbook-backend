@@ -398,22 +398,22 @@ final class VBTKPlugin extends AbstractPicoPlugin
         // }
 
         if (strpos(end($path), '.md') !== false){
-            $request_file = $this->getRequestFile();
+            $request_file = sanitize($this->getRequestFile());
             foreach (array_values($twigVariables['current_play']['sections']) as $section) {
                 foreach ($section['files'] as $file) {
-                    if ($file['mdpath'] == $request_file) {
+                    if (sanitize($file['mdpath']) == $request_file) {
                         break;
                     } else {
                         $file = null;
                     }
                 }
-                if ($file['mdpath'] == $request_file) {
+                if (sanitize($file['mdpath']) == $request_file) {
                     break;
                 } else {
                     $file = null;
                 }
             }
-
+            
           $twigVariables['file'] = $file;
           $templateName = 'file.twig';
         } else if ($templateName == 'index.twig' && $query) {
