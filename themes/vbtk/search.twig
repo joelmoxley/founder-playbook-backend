@@ -5,7 +5,6 @@
     <h1>{{results|length}} results for "{{query}}"</h1>
     <ul class="search-results">
     {% for result in results %}
-      {# {{ dump(result) }} #}
       {% set url = [current_playbook.slug, current_play.slug, section.slug, result.slug]|join('/') %}
       <li>
       <a href="{{ result.fileURL ~ '.md' }}">
@@ -21,6 +20,9 @@
           {% endif %}
         </div>
       </a>
+      <div class="content">
+        {{result.content|markdown}}
+      </div>
       </li>
     {% endfor %}
     </ul>

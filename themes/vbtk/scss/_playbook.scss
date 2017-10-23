@@ -20,42 +20,58 @@
     margin: 0;
     list-style-type: none;
 
-    a {
-      color: $orange;
-      display: block;
-      font-size: 1.25em;
-      padding: .91rem 0.5rem !important;
+    > li {
       border-bottom: 1px solid $whitest;
-      position: relative;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding-right: 2em;
 
-      &:active, &:hover {
-        color: $white !important;
-        background-color: $orange;
+      > div.content {
+        padding: 0px !important;
+        white-space: normal !important;
+        padding: .91rem 0.5rem !important;
+
+        p {
+          padding: 0px !important;
+        }
       }
-      
-      &::after {
-        content: '\f054';
-        font-family: FontAwesome;
+
+      > a {
+        color: $orange;
         display: block;
-        position: absolute;
-        top: 50%;
-        right: 1em;
-        line-height: 1;
-        margin-top: -0.5em;
-        font-size: 14px;
-      }
+        font-size: 1.25em;
+        padding: .91rem 0.5rem !important;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 2em;
 
-      @include breakpoint (small only){
-        padding: .57rem 0.5rem !important;
-      }
+        &:active, &:hover {
+          color: $white !important;
+          background-color: $orange;
+        }
+        
+        &::after {
+          content: '\f054';
+          font-family: FontAwesome;
+          display: block;
+          position: absolute;
+          top: 50%;
+          right: 1em;
+          line-height: 1;
+          margin-top: -0.5em;
+          font-size: 14px;
+        }
 
-      > div {
-        font-size: 1rem;
-        color: $font-light;
+        @include breakpoint (small only){
+          padding: .57rem 0.5rem !important;
+        }
+
+        > div {
+          font-size: 1rem;
+          color: $font-light;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
       }
     }
   }

@@ -357,8 +357,14 @@ final class VBTKPlugin extends AbstractPicoPlugin
         $query = $_GET['query'];
         // $sanitizedQuery = sanitize($query);
         $queryValues = explode(' ', trim($query));
-        foreach ($queryValues as &$value) {
-            $value = sanitize($value);
+        foreach ($queryValues as $index => $value) {
+            $value = sanitize_with_spaces($value);
+            
+            if (strlen($value) < 5) {
+                $value = ' ' . $value . ' ';
+            }
+
+            $queryValues[$index] = $value;
         }
 
         $twigVariables['exampleContent'] = file_get_contents('./content/example.md');
@@ -399,7 +405,7 @@ final class VBTKPlugin extends AbstractPicoPlugin
             // $templateName = 'play.twig';
         // }
 
-        if (strpos(end($path), '.md') !== false){
+        if (strpos(end($path), '.md') !== false) {
             $request_file = sanitize($this->getRequestFile());
             foreach (array_values($twigVariables['current_play']['sections']) as $section) {
                 foreach ($section['files'] as $file) {
@@ -424,15 +430,17 @@ final class VBTKPlugin extends AbstractPicoPlugin
           $twigVariables['query'] = htmlentities($query);
           $results = [];
 
+          $i = 0;
           foreach ($contentDir['files'] as $file) {
             $content = strtolower($file['name']);
             $totalWeight = 0;
             $matchWeights = array(
                 'name' => 1,
-                'content' => 1 / 6,
-                'searchContent' => 1 / 30
+                'content' => (1 / 6),
+                'searchContent' => (1 / 30)
             );
             $matched = array();
+            $allMatches = 0;
 
             // if ($file['md']) {
             //     preg_match('/\{[^a-z]*(raw|search)-?content\:[^a-z0-9]+(.*)/si', file_get_contents($file['path']), $matches);
@@ -440,7 +448,9 @@ final class VBTKPlugin extends AbstractPicoPlugin
             //     $content .= sanitize(file_get_contents($file['mdpath']));
             // }
 
-                foreach ($queryValues as $value) {
+                foreach ($queryValues as $index => $value) {
+                    $valueWeight = 1 - ($index / (sizeof($queryValues)));
+
                     foreach ($matchWeights as $key => $weight) {
                         $content = trim($file[$key]);
 
@@ -448,20 +458,39 @@ final class VBTKPlugin extends AbstractPicoPlugin
                             continue;
                         }
 
-                        $content = sanitize(strtolower($content));
+                        $content = ' ' . sanitize_with_spaces(strtolower($content)) . ' ';
 
-                        $count = substr_count($content, $value);
-                        
-                        $matched[$key] = $count !== 0;
+                        $count = 0;
+
+                        $lastPos = 0;
+                        while (($lastPos = strpos($content, $value, $lastPos))!== false) {
+                            $count += 1 - ($lastPos / strlen($content));
+
+                            $lastPos = $lastPos + strlen($value);
+                        }
 
                         if ($count === 0) {
                             continue;
                         }
 
-                        $totalWeight += ($weight * $count);
+                        $count = ($count * strlen($value)) / strlen($content);
+
+                        if (!isset($matched[$key])) {
+                            $matched[$key] = 0;
+                        }
+
+                        $allMatches++;
+
+                        $amount = ($weight * $count * $valueWeight);
+
+                        $totalWeight += $amount;
+
+                        $matched[$key] += $amount;
+
                     }
                   }
 
+                $totalWeight *= $allMatches / (sizeof($matchWeights) * sizeof($queryValues));
 
                 if ($totalWeight != 0) {
                     array_push($results, array(
@@ -491,6 +520,8 @@ final class VBTKPlugin extends AbstractPicoPlugin
           //     echo "</table>";
 
             $twigVariables['results'] = array_map(function ($result) {
+                $result['file']['weight'] = $result['weight'];
+                $result['file']['matchedKeys'] = $result['matchedKeys'];
                 return $result['file'];
             }, $results);
 
@@ -513,6 +544,11 @@ final class VBTKPlugin extends AbstractPicoPlugin
 function sanitize($string) {
     // return ' ' . preg_replace('/[^a-z0-9 ]/', '', preg_replace('/\s{2,}/', ' ', strtolower($string))) . ' ';
     return preg_replace('/[^a-z0-9]/', '', strtolower($string));
+}
+
+function sanitize_with_spaces($string) {
+    // return ' ' . preg_replace('/[^a-z0-9 ]/', '', preg_replace('/\s{2,}/', ' ', strtolower($string))) . ' ';
+    return preg_replace('/[^a-z0-9\s]+/', ' ', preg_replace('/(\'|s$)/', '', trim(strtolower($string))));
 }
 
 function slugify($string) {

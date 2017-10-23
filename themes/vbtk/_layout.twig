@@ -60,7 +60,7 @@
     {% endspaceless %}
 
     <div id="container">
-        {% if current_playbook %}
+        {% if current_playbook and not file %}
         <ul class="playbook-nav">
             <li {% if not current_play and current_playbook %} class="selected"{% endif %}>
                 <a title="{{ current_playbook.name }}" href="/{{ current_playbook.slug }}">
