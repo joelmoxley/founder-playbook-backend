@@ -63,7 +63,7 @@ $(document).ready(function () {
   $('.playbook-nav li > a').on('click', function (e) {
     var href = $(this).attr('href');
 
-    if (/^https?:/.test(href) || href.indexOf('.') !== -1) {
+    if (/^https?:/.test(href) || /^mailto:/.test(href) || href.indexOf('.') !== -1) {
       return;
     }
 
@@ -190,11 +190,13 @@ $(document).ready(function () {
   $('.dropdown-nav').on('click', function () {
     $('.dropdown-nav').hide();
   });
+
+  $(document.body).append('<iframe name="hidden-iframe" style="visibility:hidden;position:absolute;"></iframe>');
 });
 
-window.onbeforeunload = function(e) {
-  $('#content').addClass('loading');
-};
+$('a[href^=mailto]').each(function() {
+  $(this).attr('target', 'hidden-iframe');
+});
 
 $(document).ajaxComplete(function () {
   $('#content').removeClass('loading');
